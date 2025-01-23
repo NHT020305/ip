@@ -1,0 +1,19 @@
+list
+todo swim
+list
+deadline homework /by Sunday
+list
+event quiz /from Mon 2pm /to Mon 4pm
+list
+mark 1
+mark 2
+mark 3
+list
+unmark 1
+unmark 2
+unmark 3
+list
+deadline
+mark 4
+delete 1
+bye
