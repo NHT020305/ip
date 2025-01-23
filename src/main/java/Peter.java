@@ -10,7 +10,7 @@ public class Peter {
         ArrayList<Task> tasks = new ArrayList<>();
 
         System.out.println("____________________________________________________________");
-        System.out.println(" Hello! I'm TUNG");
+        System.out.println(" Hello! I'm Peter");
         System.out.println(" What can I do for you?");
         System.out.println("____________________________________________________________");
 
