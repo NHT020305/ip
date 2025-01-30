@@ -1,53 +1,61 @@
+import java.util.ArrayList;
+
 public class TaskManager {
 
-    protected String input;
+    protected ArrayList<Task> tasks;
+    protected TaskStorage taskStorage;
 
-    TaskManager(String input) {
-        this.input = input;
+    TaskManager(ArrayList<Task> tasks, TaskStorage taskStorage) {
+        this.tasks = tasks;
+        this.taskStorage = taskStorage;
     }
 
-    Task getTask() throws EmptyTaskException, InvalidTaskFormatException {
-        Task newTask = null;
-        if (input.startsWith("todo")) {
-            if (input.trim().length() == "todo".length()) {
-                throw new EmptyTaskException("OOPS!!! The description of a todo cannot be empty.");
-            }
-            String description = input.split(" ")[1];
-            newTask = new ToDo(description);
-        } else if (input.startsWith("deadline")) {
-            if (input.trim().length() == "deadline".length()) {
-                throw new EmptyTaskException("OOPS!!! The description of a deadline cannot be empty.");
-            }
-            String task = input.substring("deadline ".length()).trim();
-            String[] parts = task.split("/by");
-            if (parts.length != 2) {
-                throw new InvalidTaskFormatException("OOPS!!! Invalid deadline format.");
-            }
-            String description = parts[0].trim();
-            String by = parts[1].trim();
-            newTask = new Deadline(description, new LocalDateTimeParser(by).convertToTime());
-        } else if (input.startsWith("event")) {
-            if (input.trim().length() == "event".length()) {
-                throw new EmptyTaskException("OOPS!!! The description of an event cannot be empty.");
-            }
-            String task = input.substring("event ".length());
-            String[] parts = task.split("/from");
-            if (parts.length != 2) {
-                throw new InvalidTaskFormatException("OOPS!!! Invalid event format.");
-            }
-            String description = parts[0].trim();
-            String[] date = parts[1].split("/to");
-            if (date.length != 2) {
-                throw new InvalidTaskFormatException("OOPS!!! Invalid event format.");
-            }
-            String from = date[0].trim();
-            if (from.isEmpty()) {
-                throw new InvalidTaskFormatException("OOPS!!! Invalid event format.");
-            }
-            String to = date[1].trim();
-            newTask = new Event(description, new LocalDateTimeParser(from).convertToTime(),
-                        new LocalDateTimeParser(to).convertToTime());
+    TaskManager(TaskStorage taskStorage) {
+        this.tasks = new ArrayList<>();
+        this.taskStorage = taskStorage;
+    }
+
+    public int size() {
+        return tasks.size();
+    }
+
+    public Task getTask(int index) {
+        return tasks.get(index);
+    }
+
+    public void list() {
+        for (int i = 0; i < this.tasks.size(); i++) {
+            System.out.println((i + 1) + "." + this.tasks.get(i));
         }
-        return newTask;
+    }
+
+    public void add(Task task) {
+        tasks.add(task);
+        taskStorage.saveTasks(tasks);
+    }
+
+    public Task delete(int index) {
+        if (index < 0 || index >= tasks.size()) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+        Task task = tasks.remove(index);
+        taskStorage.saveTasks(tasks);
+        return task;
+    }
+
+    public void markAsDone(int index) {
+        if (index < 0 || index >= tasks.size()) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+        tasks.get(index).markDone();
+        taskStorage.saveTasks(tasks);
+    }
+
+    public void markAsNotDone(int index) {
+        if (index < 0 || index >= tasks.size()) {
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+        tasks.get(index).markNotDone();
+        taskStorage.saveTasks(tasks);
     }
 }

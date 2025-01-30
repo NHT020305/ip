@@ -58,12 +58,15 @@ public class TaskStorage {
         }
     }
 
-    public ArrayList<Task> load() {
+    public ArrayList<Task> loadTasks() {
         ArrayList<Task> tasks = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
-                Task task = new TaskManager(convert(line)).getTask();
+                Task task = new TaskGenerator(convert(line)).getTask();
+                if (line.contains("X")) {
+                    task.markDone();
+                }
                 tasks.add(task);
             }
         } catch (IOException | EmptyTaskException | InvalidTaskFormatException e) {
