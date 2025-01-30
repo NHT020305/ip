@@ -9,6 +9,7 @@ public class Peter {
         ArrayList<Task> tasks = new ArrayList<>();
         //ArrayList<String> taskString = new ArrayList<>();
         TaskStorage taskStorage = new TaskStorage("./data/Peter.txt");
+        taskStorage.createDataFile();
 
         System.out.println("____________________________________________________________");
         System.out.println(" Hello! I'm Peter");

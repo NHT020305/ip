@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.BufferedWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.File;
 
 public class TaskStorage {
 
@@ -11,6 +15,25 @@ public class TaskStorage {
 
     public TaskStorage(String filePath) {
         this.filePath = filePath;
+    }
+
+    public void createDataFile() {
+        File file = new File(filePath);
+        String fileName = file.getName();
+        String directoryName = file.getParent();
+
+        Path dataDirectory = Paths.get(directoryName);
+        Path dataFile = dataDirectory.resolve(fileName);
+
+        try {
+            if (!Files.exists(dataDirectory)) {
+                Files.createDirectories(dataDirectory);
+            } if (!Files.exists(dataFile)) {
+                Files.createFile(dataFile);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private String convert(String task) {
@@ -50,7 +73,6 @@ public class TaskStorage {
                 bw.write(task.toString());
                 bw.newLine();
             }
-            System.out.println("saved");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
