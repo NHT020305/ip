@@ -25,7 +25,7 @@ public class TaskManager {
             }
             String description = parts[0].trim();
             String by = parts[1].trim();
-            newTask = new Deadline(description, by);
+            newTask = new Deadline(description, new LocalDateTimeParser(by).convertToTime());
         } else if (input.startsWith("event")) {
             if (input.trim().length() == "event".length()) {
                 throw new EmptyTaskException("OOPS!!! The description of an event cannot be empty.");
@@ -45,7 +45,8 @@ public class TaskManager {
                 throw new InvalidTaskFormatException("OOPS!!! Invalid event format.");
             }
             String to = date[1].trim();
-            newTask = new Event(description, from, to);
+            newTask = new Event(description, new LocalDateTimeParser(from).convertToTime(),
+                        new LocalDateTimeParser(to).convertToTime());
         }
         return newTask;
     }
