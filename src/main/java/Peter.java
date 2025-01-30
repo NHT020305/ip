@@ -1,13 +1,14 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class Peter {
 
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
         ArrayList<Task> tasks = new ArrayList<>();
+        //ArrayList<String> taskString = new ArrayList<>();
+        TaskStorage taskStorage = new TaskStorage("./data/Peter.txt");
 
         System.out.println("____________________________________________________________");
         System.out.println(" Hello! I'm Peter");
@@ -36,7 +37,9 @@ public class Peter {
                     if (index < 0 || index >= tasks.size()) {
                         throw new IndexOutOfBoundsException("Index out of bounds");
                     }
+                    tasks = taskStorage.load();
                     tasks.get(index).markDone();
+                    taskStorage.saveTasks(tasks);
                     Task task = tasks.get(index);
                     System.out.println("____________________________________________________________");
                     System.out.println(" Nice! I've marked this task as done:");
@@ -47,7 +50,9 @@ public class Peter {
                     if (index < 0 || index >= tasks.size()) {
                         throw new IndexOutOfBoundsException("Index out of bounds");
                     }
+                    tasks = taskStorage.load();
                     tasks.get(index).markNotDone();
+                    taskStorage.saveTasks(tasks);
                     Task task = tasks.get(index);
                     System.out.println("____________________________________________________________");
                     System.out.println(" OK, I've marked this task as not done yet:");
@@ -58,15 +63,21 @@ public class Peter {
                     if (index < 0 || index >= tasks.size()) {
                         throw new IndexOutOfBoundsException("Index out of bounds");
                     }
+                    tasks = taskStorage.load();
                     Task task = tasks.remove(index);
+                    taskStorage.saveTasks(tasks);
                     System.out.println("____________________________________________________________");
                     System.out.println(" Noted. I've removed this task:");
                     System.out.println("  " + task);
                     System.out.println(" Now you have " + tasks.size() + " tasks in the list.");
                     System.out.println("____________________________________________________________");
                 } else if (command.startsWith("todo") || command.startsWith("deadline") || command.startsWith("event")) {
-                    Task task = getTask(command);
+                    Task task = new TaskManager(command).getTask();
+                    if (! tasks.isEmpty()) {
+                        tasks = taskStorage.load();
+                    }
                     tasks.add(task);
+                    taskStorage.saveTasks(tasks);
                     System.out.println("____________________________________________________________");
                     System.out.println(" Got it. I've added this task:");
                     System.out.println("  " + task);
@@ -86,53 +97,4 @@ public class Peter {
         scanner.close();
     }
 
-
-    private static Task getTask(String input) throws Exception {
-
-        Task newTask = null;
-
-        if (input.startsWith("todo")) {
-            if (input.trim().length() == "todo".length()) {
-                throw new EmptyTaskException("OOPS!!! The description of a todo cannot be empty.");
-            }
-            String description = input.split(" ")[1];
-            newTask = new ToDo(description);
-
-        } else if (input.startsWith("deadline")) {
-            if (input.trim().length() == "deadline".length()) {
-                throw new EmptyTaskException("OOPS!!! The description of a deadline cannot be empty.");
-            }
-            String task = input.substring("deadline ".length()).trim();
-            String[] parts = task.split("/by");
-            if (parts.length != 2) {
-                throw new InvalidTaskFormatException("OOPS!!! Invalid deadline format.");
-            }
-            String description = parts[0].trim();
-            String by = parts[1].trim();
-            newTask = new Deadline(description, by);
-
-        } else if (input.startsWith("event")) {
-            if (input.trim().length() == "event".length()) {
-                throw new EmptyTaskException("OOPS!!! The description of an event cannot be empty.");
-            }
-            String task = input.substring("event ".length());
-            String[] parts = task.split("/from");
-            if (parts.length != 2) {
-                throw new InvalidTaskFormatException("OOPS!!! Invalid event format.");
-            }
-            String description = parts[0].trim();
-            String[] date = parts[1].split("/to");
-            if (date.length != 2) {
-                throw new InvalidTaskFormatException("OOPS!!! Invalid event format.");
-            }
-            String from = date[0].trim();
-            if (from.isEmpty()) {
-                throw new InvalidTaskFormatException("OOPS!!! Invalid event format.");
-            }
-            String to = date[1].trim();
-            newTask = new Event(description, from, to);
-        }
-
-        return newTask;
-    }
 }
