@@ -1,3 +1,10 @@
+package Peter;
+
+import Peter.command.CommandParser;
+import Peter.task.TaskManager;
+import Peter.storage.TaskStorage;
+import Peter.ui.Ui;
+
 import java.util.Scanner;
 
 public class Peter {
