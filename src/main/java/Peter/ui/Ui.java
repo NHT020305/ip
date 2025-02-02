@@ -1,5 +1,7 @@
 package Peter.ui;
 
+import java.util.Scanner;
+
 public class Ui {
 
     public void welcome() {
@@ -17,5 +19,10 @@ public class Ui {
 
     public void showError(String message) {
         System.out.println(message);
+    }
+
+    public String readCommand() {
+        Scanner scanner = new Scanner(System.in);
+        return scanner.nextLine().trim().toLowerCase();
     }
 }

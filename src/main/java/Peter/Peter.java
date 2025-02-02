@@ -1,11 +1,11 @@
 package Peter;
 
+import Peter.command.Command;
 import Peter.command.CommandParser;
 import Peter.task.TaskManager;
 import Peter.storage.TaskStorage;
 import Peter.ui.Ui;
 
-import java.util.Scanner;
 
 public class Peter {
 
@@ -29,24 +29,22 @@ public class Peter {
         ui.welcome();
         taskManager.list();
         ui.showLine();
-        Scanner scanner = new Scanner(System.in);
-        while (true) {
+        boolean isExit = false;
+        while (!isExit) {
             try {
-                String command = scanner.nextLine().trim().toLowerCase();
+                String fullCommand = ui.readCommand();
                 ui.showLine();
-                if (command.equals("bye")) {
-                    ui.goodbye();
-                    break;
-                }
-                CommandParser commandParser = new CommandParser(command);
-                commandParser.makeSenseUserCommand(taskManager);
+
+                Command command = new CommandParser(fullCommand)
+                        .makeSenseUserCommand();
+                command.execute(ui, taskManager);
+                isExit = command.isTerminal();
             } catch(Exception e) {
                 ui.showError(e.getMessage());
             } finally {
                 ui.showLine();
             }
         }
-        scanner.close();
     }
 
     public static void main(String[] args) {

@@ -1,2 +1,3 @@
 [D][X] do st2132 homework (by: 2025-02-07T23:59)
 [T][ ] play
+[T][ ] jump
