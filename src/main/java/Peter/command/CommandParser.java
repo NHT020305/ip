@@ -14,8 +14,8 @@ public class CommandParser {
         this.command = command;
     }
 
-    public Command makeSenseUserCommand() throws
-            MeaninglessCommandException, EmptyTaskException, InvalidTaskFormatException {
+    public Command makeSenseUserCommand() throws MeaninglessCommandException,
+            EmptyTaskException, InvalidTaskFormatException {
         if (command.equals("bye")) {
             return new ByeCommand();
         } else if (command.equals("list")) {

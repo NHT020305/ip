@@ -36,7 +36,7 @@ public class Peter {
                 ui.showLine();
 
                 Command command = new CommandParser(fullCommand)
-                        .makeSenseUserCommand();
+                                        .makeSenseUserCommand();
                 command.execute(ui, taskManager);
                 isExit = command.isTerminal();
             } catch(Exception e) {
