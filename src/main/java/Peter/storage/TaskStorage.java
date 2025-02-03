@@ -3,6 +3,7 @@ package Peter.storage;
 import Peter.task.Task;
 import Peter.exception.InvalidTaskFormatException;
 import Peter.exception.EmptyTaskException;
+import Peter.task.TaskManager;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 
 public class TaskStorage {
 
-    protected String filePath;
+    private final String filePath;
 
     public TaskStorage(String filePath) {
         this.filePath = filePath;
@@ -81,9 +82,9 @@ public class TaskStorage {
         return tasks;
     }
 
-    public void saveTasks(ArrayList<Task> tasks) {
+    public void saveTasks(TaskManager taskManager) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, false))) {
-            for (Task task : tasks) {
+            for (Task task : taskManager.getTaskList()) {
                 bw.write(task.toString());
                 bw.newLine();
             }

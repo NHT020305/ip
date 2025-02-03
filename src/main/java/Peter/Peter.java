@@ -10,17 +10,18 @@ import Peter.ui.Ui;
 public class Peter {
 
     private TaskManager taskManager;
+    private final TaskStorage taskStorage;
     private final Ui ui;
 
     public Peter(String filePath) {
         ui = new Ui();
-        TaskStorage taskStorage = new TaskStorage(filePath);
+        taskStorage = new TaskStorage(filePath);
         taskStorage.createDataFile();
         try {
-            taskManager = new TaskManager(taskStorage.loadTasks(), taskStorage);
+            taskManager = new TaskManager(taskStorage.loadTasks());
         } catch (Exception e) {
             ui.showError(e.getMessage());
-            taskManager = new TaskManager(taskStorage);
+            taskManager = new TaskManager();
         }
     }
 
@@ -35,9 +36,9 @@ public class Peter {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
 
-                Command command = new CommandParser(fullCommand)
-                                        .makeSenseUserCommand();
-                command.execute(ui, taskManager);
+                Command command = new CommandParser()
+                                        .makeSenseUserCommand(fullCommand);
+                command.execute(ui, taskManager, taskStorage);
                 isExit = command.isTerminal();
             } catch(Exception e) {
                 ui.showError(e.getMessage());

@@ -1,6 +1,6 @@
 package Peter.command;
 
-import Peter.command.command.*;
+import Peter.command.commands.*;
 import Peter.exception.EmptyTaskException;
 import Peter.exception.InvalidTaskFormatException;
 import Peter.exception.MeaninglessCommandException;
@@ -8,13 +8,7 @@ import Peter.storage.TaskGenerator;
 
 public class CommandParser {
 
-    protected String command;
-
-    public CommandParser(String command) {
-        this.command = command;
-    }
-
-    public Command makeSenseUserCommand() throws MeaninglessCommandException,
+    public Command makeSenseUserCommand(String command) throws MeaninglessCommandException,
             EmptyTaskException, InvalidTaskFormatException {
         if (command.equals("bye")) {
             return new ByeCommand();
