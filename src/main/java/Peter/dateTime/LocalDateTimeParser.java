@@ -2,14 +2,31 @@ package Peter.dateTime;
 
 import java.time.LocalDateTime;
 
+/**
+ * A utility class to parse and convert date-time strings into {@code LocalDateTime} objects.
+ */
 public class LocalDateTimeParser {
 
     protected String input;
+
+    /**
+     * Constructs a LocalDateTimeParser with the specified input string.
+     *
+     * @param input The date-time string to parse.
+     *              The expected format is "dd/MM/yyyy HHmm".
+     */
 
     public LocalDateTimeParser(String input) {
         this.input = input;
     }
 
+    /**
+     * Converts the input date-time string to a {@code LocalDateTime} object.
+     *
+     * @return A {@code LocalDateTime} object representing the parsed date and time.
+     * @throws ArrayIndexOutOfBoundsException If the input string is not in the expected format.
+     * @throws NumberFormatException If date or time components cannot be parsed as integers.
+     */
     public LocalDateTime convertToTime() {
         String[] parts = input.split(" ");
         String datePart = parts[0];

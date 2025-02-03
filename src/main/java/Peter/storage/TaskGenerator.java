@@ -8,11 +8,25 @@ import Peter.task.type.Deadline;
 import Peter.task.type.Event;
 import Peter.task.type.ToDo;
 
+/**
+ * Generates task objects based on user input.
+ */
 public class TaskGenerator {
 
+    /**
+     * Constructs a TaskGenerator.
+     */
     public TaskGenerator() {
     }
 
+    /**
+     * Parses the input string and generates the corresponding Task object.
+     *
+     * @param input The input string describing the task.
+     * @return The generated Task object.
+     * @throws EmptyTaskException If the task description is empty.
+     * @throws InvalidTaskFormatException If the task input format is invalid.
+     */
     public Task getTask(String input) throws EmptyTaskException, InvalidTaskFormatException {
         Task newTask = null;
         if (input.startsWith("todo")) {

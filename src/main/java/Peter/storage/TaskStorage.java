@@ -18,14 +18,25 @@ import java.nio.file.Paths;
 import java.io.File;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Handles storage and retrieval of tasks to and from a data file.
+ */
 public class TaskStorage {
 
     private final String filePath;
 
+    /**
+     * Constructs a TaskStorage with the specified file path.
+     *
+     * @param filePath The file path where task data is stored.
+     */
     public TaskStorage(String filePath) {
         this.filePath = filePath;
     }
 
+    /**
+     * Creates the data file and its directory if they do not exist.
+     */
     public void createDataFile() {
         File file = new File(filePath);
         String fileName = file.getName();
@@ -45,6 +56,12 @@ public class TaskStorage {
         }
     }
 
+    /**
+     * Converts a task string from file format to a command format for parsing.
+     *
+     * @param task The task string to convert.
+     * @return The converted task string.
+     */
     private String convert(String task) {
         if (task.startsWith("[T]")) {
             return "todo " + task.substring(7);
@@ -65,6 +82,12 @@ public class TaskStorage {
         }
     }
 
+    /**
+     * Loads tasks from the data file.
+     *
+     * @return A list of tasks loaded from the file.
+     * @throws RuntimeException If an error occurs during file reading or task parsing.
+     */
     public ArrayList<Task> loadTasks() {
         ArrayList<Task> tasks = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -82,6 +105,11 @@ public class TaskStorage {
         return tasks;
     }
 
+    /**
+     * Saves the current tasks to the data file.
+     *
+     * @param taskManager The task manager containing the tasks to save.
+     */
     public void saveTasks(TaskManager taskManager) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, false))) {
             for (Task task : taskManager.getTaskList()) {

@@ -6,8 +6,20 @@ import Peter.exception.InvalidTaskFormatException;
 import Peter.exception.MeaninglessCommandException;
 import Peter.storage.TaskGenerator;
 
+/**
+ * Parses and interprets user commands.
+ */
 public class CommandParser {
 
+    /**
+     * Interprets the user's input command and returns the corresponding Command object.
+     *
+     * @param command The user input string.
+     * @return The Command object corresponding to the input.
+     * @throws MeaninglessCommandException If the command is unrecognized.
+     * @throws EmptyTaskException If the task description is missing.
+     * @throws InvalidTaskFormatException If the task format is invalid.
+     */
     public Command makeSenseUserCommand(String command) throws MeaninglessCommandException,
             EmptyTaskException, InvalidTaskFormatException {
         if (command.equals("bye")) {
