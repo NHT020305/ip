@@ -63,4 +63,14 @@ public class TaskManager {
         }
         tasks.get(index).markNotDone();
     }
+
+    public ArrayList<Task> search(String keyWord) {
+        ArrayList<Task> newTaskList = new ArrayList<>();
+        for(Task task: tasks) {
+            if (task.getDescription().toLowerCase().contains(keyWord.toLowerCase())) {
+                newTaskList.add(task);
+            }
+        }
+        return newTaskList;
+    }
 }

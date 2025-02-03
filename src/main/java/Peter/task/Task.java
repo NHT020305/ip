@@ -10,6 +10,15 @@ public class Task {
         this.isDone = false;
     }
 
+    /**
+     * Gets the name description the task.
+     *
+     * @return The description of the task.
+     */
+    public String getDescription() {
+        return description;
+    }
+
     public String getStatusIcon() {
         return (isDone ? "X" : " ");
     }
