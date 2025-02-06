@@ -69,15 +69,15 @@ public class TaskStorage {
         } else if (task.startsWith("[D]")) {
             String[] parts = task.substring(7).split( "\\(by:");
             String date = parts[1].split("\\)")[0].trim();
-            date = LocalDateTime.parse(date).format(DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
+            date = LocalDateTime.parse(date).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
             return "deadline " + parts[0].trim() + " /by " + date;
         } else {
             String[] parts = task.substring(7).split("\\(from:");
             String[] datePart = parts[1].split("to:");
             String fromPart = datePart[0].trim();
             String toPart = datePart[1].split("\\)")[0].trim();
-            fromPart = LocalDateTime.parse(fromPart).format(DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
-            toPart = LocalDateTime.parse(toPart).format(DateTimeFormatter.ofPattern("d/M/yyyy HHmm"));
+            fromPart = LocalDateTime.parse(fromPart).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+            toPart = LocalDateTime.parse(toPart).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
             return "event " + parts[0].trim() + " /from "
                     + fromPart + " /to " + toPart;
         }

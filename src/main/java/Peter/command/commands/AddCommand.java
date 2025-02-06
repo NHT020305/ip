@@ -18,7 +18,9 @@ public class AddCommand extends Command {
         taskManager.add(task);
         System.out.println(" Got it. I've added this task:");
         System.out.println("  " + task);
-        System.out.println(" Now you have " + taskManager.size() + " tasks in the list.");
+        String isMany = taskManager.size() > 1 ? "s" : "";
+        System.out.println(" Now you have " + taskManager.size() +
+                            " task" + isMany + " in the list.");
         taskStorage.saveTasks(taskManager);
     }
 

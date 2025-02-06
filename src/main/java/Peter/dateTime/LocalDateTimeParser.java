@@ -32,7 +32,6 @@ public class LocalDateTimeParser {
     public LocalDateTime convertToTime() throws InvalidDateTimeFormatException {
 
         String[] parts = input.split(" ");
-
         if (parts.length != 2) {
             throw new InvalidDateTimeFormatException(
                     "OOPS!!! Invalid date & time format.");
@@ -41,14 +40,14 @@ public class LocalDateTimeParser {
         String datePart = parts[0];
         String timePart = parts[1];
 
-        if (timePart.length() != 4) {
+        String[] dateComponents = datePart.split("/");
+        if (dateComponents.length != 3) {
             throw new InvalidDateTimeFormatException(
                     "OOPS!!! Invalid date & time format.");
         }
 
-        String[] dateComponents = datePart.split("/");
-
-        if (dateComponents.length != 3) {
+        if (dateComponents[0].length() != 2 || dateComponents[1].length() != 2 ||
+                dateComponents[2].length() != 4) {
             throw new InvalidDateTimeFormatException(
                     "OOPS!!! Invalid date & time format.");
         }
@@ -57,8 +56,19 @@ public class LocalDateTimeParser {
         int month = Integer.parseInt(dateComponents[1]);
         int year = Integer.parseInt(dateComponents[2]);
 
-        int hour = Integer.parseInt(timePart.substring(0, 2));
-        int minute = Integer.parseInt(timePart.substring(2, 4));
+        String[] timeComponents = timePart.split(":");
+        if (timeComponents.length != 2) {
+            throw new InvalidDateTimeFormatException(
+                    "OOPS!!! Invalid date & time format.");
+        }
+
+        if (timeComponents[0].length() != 2 || timeComponents[1].length() != 2) {
+            throw new InvalidDateTimeFormatException(
+                    "OOPS!!! Invalid date & time format.");
+        }
+
+        int hour = Integer.parseInt(timeComponents[0]);
+        int minute = Integer.parseInt(timeComponents[1]);
 
         return LocalDateTime.of(year, month, day, hour, minute);
     }
