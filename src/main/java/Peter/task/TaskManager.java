@@ -2,6 +2,8 @@ package Peter.task;
 
 import java.util.ArrayList;
 
+import Peter.exception.RepeatedTaskException;
+
 /**
  * Manages a list of tasks, providing operations to add, remove, and modify tasks.
  */
@@ -52,7 +54,8 @@ public class TaskManager {
      */
     public Task getTask(int index) {
         if (index < 0 || index >= tasks.size()) {
-            throw new IndexOutOfBoundsException("Index out of bounds");
+            throw new IndexOutOfBoundsException("OOPS!!! " + (index + 1)
+                    + " is not a valid task number.");
         }
         return tasks.get(index);
     }
@@ -78,7 +81,12 @@ public class TaskManager {
      *
      * @param task The task to add.
      */
-    public void add(Task task) {
+    public void add(Task task) throws RepeatedTaskException {
+        for (Task t: tasks) {
+            if (t.isEqual(task)) {
+                throw new RepeatedTaskException("This task already exists in your list");
+            }
+        }
         tasks.add(task);
     }
 
@@ -91,7 +99,8 @@ public class TaskManager {
      */
     public Task delete(int index) {
         if (index < 0 || index >= tasks.size()) {
-            throw new IndexOutOfBoundsException("Index out of bounds");
+            throw new IndexOutOfBoundsException("OOPS!!! " + (index + 1)
+                    + " is not a valid task number.");
         }
         return tasks.remove(index);
     }
@@ -104,7 +113,8 @@ public class TaskManager {
      */
     public void markAsDone(int index) {
         if (index < 0 || index >= tasks.size()) {
-            throw new IndexOutOfBoundsException("Index out of bounds");
+            throw new IndexOutOfBoundsException("OOPS!!! " + (index + 1)
+                    + " is not a valid task number.");
         }
         tasks.get(index).markDone();
     }
@@ -117,7 +127,8 @@ public class TaskManager {
      */
     public void markAsNotDone(int index) {
         if (index < 0 || index >= tasks.size()) {
-            throw new IndexOutOfBoundsException("Index out of bounds");
+            throw new IndexOutOfBoundsException("OOPS!!! " + (index + 1)
+                    + " is not a valid task number.");
         }
         tasks.get(index).markNotDone();
     }

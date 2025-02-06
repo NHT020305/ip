@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import Peter.exception.RepeatedTaskException;
 import Peter.task.type.ToDo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,7 @@ import org.junit.jupiter.api.Test;
 public class TaskManagerTest {
 
     private TaskManager taskManager;
-    private static final String OUT_OF_RANGE_INDEX = "Index out of bounds";
+    private static final String OUT_OF_RANGE_INDEX = "OOPS!!! 1 is not a valid task number.";
 
     @BeforeEach
     void setUp() {
@@ -20,7 +21,7 @@ public class TaskManagerTest {
     }
 
     @Test
-    void addTaskTest() throws IndexOutOfBoundsException {
+    void addTaskTest() throws IndexOutOfBoundsException, RepeatedTaskException {
         assertEquals(0, taskManager.size());
         Task task = new ToDo("todo");
         taskManager.add(task);
@@ -30,7 +31,7 @@ public class TaskManagerTest {
     }
 
     @Test
-    void getTaskTest() throws IndexOutOfBoundsException {
+    void getTaskTest() throws IndexOutOfBoundsException, RepeatedTaskException {
         Task task = new ToDo("todo");
         taskManager.add(task);
         assertEquals(task, taskManager.getTask(0));
@@ -45,7 +46,7 @@ public class TaskManagerTest {
 
 
     @Test
-    void markTaskTest() throws IndexOutOfBoundsException {
+    void markTaskTest() throws IndexOutOfBoundsException, RepeatedTaskException {
         Task task = new ToDo("task");
         taskManager.add(task);
         taskManager.markAsDone(0);
@@ -61,7 +62,7 @@ public class TaskManagerTest {
 
 
     @Test
-    void unmarkTaskTest() throws IndexOutOfBoundsException {
+    void unmarkTaskTest() throws IndexOutOfBoundsException, RepeatedTaskException {
         Task task = new ToDo("task");
         task.markDone();
         taskManager.add(task);
@@ -77,7 +78,7 @@ public class TaskManagerTest {
     }
 
     @Test
-    void deleteTaskTest() throws IndexOutOfBoundsException {
+    void deleteTaskTest() throws IndexOutOfBoundsException, RepeatedTaskException {
         Task task = new ToDo("Test task");
         taskManager.add(task);
         Task deletedTask = taskManager.delete(0);

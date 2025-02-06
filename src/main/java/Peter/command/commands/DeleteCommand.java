@@ -17,10 +17,10 @@ public class DeleteCommand extends Command {
     public void execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         Task task = taskManager.delete(index);
         System.out.println(" Noted. I've removed this task:");
+        System.out.println("  " + task);
         if (taskManager.size() == 0) {
             System.out.println(" Now your task list is empty!!!");
         } else {
-            System.out.println("  " + task);
             String isMany = taskManager.size() > 1 ? "s" : "";
             System.out.println(" Now you have " + taskManager.size() +
                     " task" + isMany + " in the list.");

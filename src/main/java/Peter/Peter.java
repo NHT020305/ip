@@ -47,7 +47,7 @@ public class Peter {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
                 Command command = new CommandParser()
-                                        .makeSenseUserCommand(fullCommand);
+                        .makeSenseUserCommand(fullCommand);
                 command.execute(ui, taskManager, taskStorage);
                 isExit = command.isTerminal();
             } catch(Exception e) {

@@ -1,5 +1,6 @@
 package Peter.command;
 
+import Peter.exception.RepeatedTaskException;
 import Peter.task.TaskManager;
 import Peter.ui.Ui;
 import Peter.storage.TaskStorage;
@@ -22,8 +23,7 @@ public abstract class Command {
      * @param taskManager The manager for handling task operations.
      * @param taskStorage The storage system for tasks.
      */
-    public abstract void execute(Ui ui, TaskManager taskManager,
-                                 TaskStorage taskStorage);
+    public abstract void execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) throws RepeatedTaskException;
 
     /**
      * Checks if the command should terminate the program.

@@ -1,6 +1,7 @@
 package Peter.command.commands;
 
 import Peter.command.Command;
+import Peter.exception.RepeatedTaskException;
 import Peter.storage.TaskStorage;
 import Peter.task.Task;
 import Peter.task.TaskManager;
@@ -14,13 +15,13 @@ public class AddCommand extends Command {
         this.task = task;
     }
 
-    public void execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
+    public void execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) throws RepeatedTaskException {
         taskManager.add(task);
         System.out.println(" Got it. I've added this task:");
         System.out.println("  " + task);
         String isMany = taskManager.size() > 1 ? "s" : "";
         System.out.println(" Now you have " + taskManager.size() +
-                            " task" + isMany + " in the list.");
+                " task" + isMany + " in the list.");
         taskStorage.saveTasks(taskManager);
     }
 

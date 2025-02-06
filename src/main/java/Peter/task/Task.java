@@ -60,6 +60,15 @@ public class Task {
     }
 
     /**
+     * Checks if the task is equal to another task.
+     *
+     * @return true if 2 tasks have the same description, false otherwise.
+     */
+    public boolean isEqual(Task task) {
+        return task.toString().equals(this.toString());
+    }
+
+    /**
      * Returns a string representation of the task, including its type,
      * completion status, and name.
      *

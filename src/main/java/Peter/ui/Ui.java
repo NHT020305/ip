@@ -46,7 +46,8 @@ public class Ui {
      * Displays a horizontal line to separate sections in the console output.
      */
     public void showLine() {
-        System.out.println("____________________________________________________________");
+        System.out.println("____________________________________________________________"
+                + "____________________________");
     }
 
     /**
@@ -64,6 +65,7 @@ public class Ui {
      * @return The command input by the user, converted to lowercase and trimmed.
      */
     public String readCommand() {
+        System.out.print("Enter your command: ");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine().trim().toLowerCase();
     }
