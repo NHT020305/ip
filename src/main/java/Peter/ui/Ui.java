@@ -65,7 +65,7 @@ public class Ui {
      * @return The command input by the user, converted to lowercase and trimmed.
      */
     public String readCommand() {
-        System.out.print("Enter your command: ");
+        System.out.print("Enter your message: ");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine().trim().toLowerCase();
     }

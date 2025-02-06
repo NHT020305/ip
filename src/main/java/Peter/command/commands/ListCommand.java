@@ -8,7 +8,7 @@ import Peter.ui.Ui;
 public class ListCommand extends Command {
 
     public void execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
-        if (taskManager.size() == 0) {
+        if (taskManager.countTasks() == 0) {
             System.out.println(" There are no tasks in this list.");
             System.out.println(" Let's create a new task!!!");
         } else {

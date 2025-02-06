@@ -41,7 +41,7 @@ public class TaskManager {
      *
      * @return The size of the task list.
      */
-    public int size() {
+    public int countTasks() {
         return tasks.size();
     }
 
