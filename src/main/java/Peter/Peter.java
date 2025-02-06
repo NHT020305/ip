@@ -35,7 +35,6 @@ public class Peter {
             try {
                 String fullCommand = ui.readCommand();
                 ui.showLine();
-
                 Command command = new CommandParser()
                                         .makeSenseUserCommand(fullCommand);
                 command.execute(ui, taskManager, taskStorage);
