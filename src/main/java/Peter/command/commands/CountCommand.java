@@ -8,7 +8,13 @@ import Peter.ui.Ui;
 public class CountCommand extends Command {
 
     public void execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
-        System.out.println(" You have " + taskManager.size() + " tasks in the list.");
+        if (taskManager.size() == 0) {
+            System.out.println(" There are no tasks in this list.");
+            System.out.println(" Let's create a new task!!!");
+        }
+        String isMany = taskManager.size() > 1 ? "s" : "";
+        System.out.println(" You have " + taskManager.size()
+                + " task" + isMany + " in the list.");
         taskStorage.saveTasks(taskManager);
     }
 

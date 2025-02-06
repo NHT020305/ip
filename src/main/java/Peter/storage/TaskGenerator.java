@@ -2,6 +2,7 @@ package Peter.storage;
 
 import Peter.dateTime.LocalDateTimeParser;
 import Peter.exception.EmptyTaskException;
+import Peter.exception.InvalidDateTimeFormatException;
 import Peter.exception.InvalidTaskFormatException;
 import Peter.task.Task;
 import Peter.task.type.Deadline;
@@ -27,7 +28,8 @@ public class TaskGenerator {
      * @throws EmptyTaskException If the task description is empty.
      * @throws InvalidTaskFormatException If the task input format is invalid.
      */
-    public Task getTask(String input) throws EmptyTaskException, InvalidTaskFormatException {
+    public Task getTask(String input) throws EmptyTaskException,
+            InvalidTaskFormatException, InvalidDateTimeFormatException {
         Task newTask = null;
         if (input.startsWith("todo")) {
             if (input.trim().length() == "todo".length()) {
@@ -45,6 +47,9 @@ public class TaskGenerator {
                 throw new InvalidTaskFormatException("OOPS!!! Invalid deadline format.");
             }
             String description = parts[0].trim();
+            if (description.isEmpty()) {
+                throw new EmptyTaskException("OOPS!!! The description of a deadline cannot be empty.");
+            }
             String by = parts[1].trim();
             newTask = new Deadline(description, new LocalDateTimeParser(by).convertToTime());
         } else if (input.startsWith("event")) {
@@ -57,6 +62,9 @@ public class TaskGenerator {
                 throw new InvalidTaskFormatException("OOPS!!! Invalid event format.");
             }
             String description = parts[0].trim();
+            if (description.isEmpty()) {
+                throw new EmptyTaskException("OOPS!!! The description of a deadline cannot be empty.");
+            }
             String[] date = parts[1].split("/to");
             if (date.length != 2) {
                 throw new InvalidTaskFormatException("OOPS!!! Invalid event format.");

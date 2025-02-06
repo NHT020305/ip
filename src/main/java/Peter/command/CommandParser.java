@@ -2,6 +2,7 @@ package Peter.command;
 
 import Peter.command.commands.*;
 import Peter.exception.EmptyTaskException;
+import Peter.exception.InvalidDateTimeFormatException;
 import Peter.exception.InvalidTaskFormatException;
 import Peter.exception.MeaninglessCommandException;
 import Peter.storage.TaskGenerator;
@@ -21,9 +22,11 @@ public class CommandParser {
      * @throws InvalidTaskFormatException If the task format is invalid.
      */
     public Command makeSenseUserCommand(String command) throws MeaninglessCommandException,
-            EmptyTaskException, InvalidTaskFormatException {
+            EmptyTaskException, InvalidTaskFormatException, InvalidDateTimeFormatException {
         if (command.equals("bye")) {
             return new ByeCommand();
+        } else if (command.equals("instruction")) {
+            return new InstructionCommand();
         } else if (command.equals("list")) {
             return new ListCommand();
         } else if (command.equals("reset")) {

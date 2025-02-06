@@ -40,7 +40,6 @@ public class Peter {
     public void run() {
         ui.showLine();
         ui.welcome();
-        taskManager.list();
         ui.showLine();
         boolean isExit = false;
         while (!isExit) {

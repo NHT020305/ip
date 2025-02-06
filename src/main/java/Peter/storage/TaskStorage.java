@@ -1,5 +1,6 @@
 package Peter.storage;
 
+import Peter.exception.InvalidDateTimeFormatException;
 import Peter.task.Task;
 import Peter.exception.InvalidTaskFormatException;
 import Peter.exception.EmptyTaskException;
@@ -99,7 +100,8 @@ public class TaskStorage {
                 }
                 tasks.add(task);
             }
-        } catch (IOException | EmptyTaskException | InvalidTaskFormatException e) {
+        } catch (IOException | EmptyTaskException | InvalidTaskFormatException |
+                 InvalidDateTimeFormatException e) {
             throw new RuntimeException(e);
         }
         return tasks;
