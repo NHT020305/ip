@@ -33,7 +33,7 @@ public class TaskGenerator {
             if (input.trim().length() == "todo".length()) {
                 throw new EmptyTaskException("OOPS!!! The description of a todo cannot be empty.");
             }
-            String description = input.split(" ")[1];
+            String description = input.split(" ", 2)[1];
             newTask = new ToDo(description);
         } else if (input.startsWith("deadline")) {
             if (input.trim().length() == "deadline".length()) {

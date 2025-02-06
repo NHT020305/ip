@@ -42,6 +42,8 @@ public class CommandParser {
         } else if (command.startsWith("todo") || command.startsWith("deadline")
                 || command.startsWith("event")) {
             return new AddCommand(new TaskGenerator().getTask(command));
+        } else if (command.startsWith("find")) {
+            return new FindCommand(command.substring(5));
         }
         throw new MeaninglessCommandException(
                 "OOPS!!! I'm sorry, but I don't know what that means :-(");
