@@ -14,6 +14,7 @@ public class TaskManagerTest {
 
     private TaskManager taskManager;
     private static final String OUT_OF_RANGE_INDEX = "OOPS!!! 1 is not a valid task number.";
+    private static final String ALREADY_EXISTS_TASK = "OOPS!!! This task already exists in your list";
 
     @BeforeEach
     void setUp() {
@@ -28,6 +29,16 @@ public class TaskManagerTest {
         assertEquals(0, taskManager.size() - 1);
         assertEquals(1, taskManager.size());
         assertEquals(task, taskManager.getTask(0));
+    }
+
+    @Test
+    void addTaskTest_throwException() throws RepeatedTaskException {
+        assertEquals(0, taskManager.size());
+        Task task = new ToDo("todo");
+        taskManager.add(task);
+        Exception exception = assertThrows(RepeatedTaskException.class, () ->
+                taskManager.add(new ToDo("todo")));
+        assertEquals(ALREADY_EXISTS_TASK, exception.getMessage());
     }
 
     @Test

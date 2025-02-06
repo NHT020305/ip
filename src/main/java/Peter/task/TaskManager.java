@@ -84,7 +84,7 @@ public class TaskManager {
     public void add(Task task) throws RepeatedTaskException {
         for (Task t: tasks) {
             if (t.isEqual(task)) {
-                throw new RepeatedTaskException("This task already exists in your list");
+                throw new RepeatedTaskException("OOPS!!! This task already exists in your list");
             }
         }
         tasks.add(task);
