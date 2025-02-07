@@ -8,7 +8,7 @@ import Peter.task.Task;
 public class ToDo extends Task {
 
     /**
-     * Constructs a ToDo task with the specified description.
+     * Constructs a ToDoTask with the specified description.
      *
      * @param description The description of the task.
      */
@@ -17,7 +17,19 @@ public class ToDo extends Task {
     }
 
     /**
-     * Returns a string representation of the ToDo task.
+     * Checks if the ToDoTask is equal to another ToDoTask.
+     *
+     * @return true if 2 todos have the same description, false otherwise.
+     */
+    public boolean equals(Task task) {
+        if (task instanceof ToDo other) {
+            return this.description.equals(other.description);
+        }
+        return false;
+    }
+
+    /**
+     * Returns a string representation of the ToDoTask.
      *
      * @return The string representation of the task.
      */

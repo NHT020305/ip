@@ -3,7 +3,7 @@ package Peter.task;
 /**
  * Represents a task with a description and completion status.
  */
-public class Task {
+public abstract class Task {
 
     protected String description;
     protected boolean isDone;
@@ -64,9 +64,10 @@ public class Task {
      *
      * @return true if 2 tasks have the same description, false otherwise.
      */
-    public boolean isEqual(Task task) {
-        return task.toString().equals(this.toString());
-    }
+    //public abstract boolean isEqual(Task task);
+
+    public abstract boolean equals(Task task);
+
 
     /**
      * Returns a string representation of the task, including its type,

@@ -65,7 +65,7 @@ public class TaskManager {
      */
     public void list() {
         for (int i = 0; i < this.tasks.size(); i++) {
-            System.out.printf("%d. %s%n", i + 1, this.tasks.get(i));
+            System.out.printf("    %d. %s%n", i + 1, this.tasks.get(i));
         }
     }
 
@@ -83,7 +83,7 @@ public class TaskManager {
      */
     public void add(Task task) throws RepeatedTaskException {
         for (Task t: tasks) {
-            if (t.isEqual(task)) {
+            if (t.equals(task)) {
                 throw new RepeatedTaskException("OOPS!!! This task already exists in your list");
             }
         }

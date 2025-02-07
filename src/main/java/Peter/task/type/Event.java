@@ -25,6 +25,20 @@ public class Event extends Task {
     }
 
     /**
+     * Checks if the event is equal to another event.
+     *
+     * @return true if 2 tasks have the same description and same time, false otherwise.
+     */
+    public boolean equals(Task task) {
+        if (task instanceof Event other) {
+            return this.description.equals(other.description) &&
+                    this.from.equals(other.from) &&
+                    this.to.equals(other.to);
+        }
+        return false;
+    }
+
+    /**
      * Returns a string representation of the Event task.
      *
      * @return The string representation of the task.

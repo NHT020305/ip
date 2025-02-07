@@ -22,6 +22,19 @@ public class Deadline extends Task {
     }
 
     /**
+     * Checks if the event is equal to another event.
+     *
+     * @return true if 2 tasks have the same description and same time, false otherwise.
+     */
+    public boolean equals(Task task) {
+        if (task instanceof Deadline other) {
+            return this.description.equals(other.description)
+                    && this.by.equals(other.by);
+        }
+        return false;
+    }
+
+    /**
      * Returns a string representation of the Deadline task.
      *
      * @return The string representation of the task.
