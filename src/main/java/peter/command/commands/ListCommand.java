@@ -17,13 +17,13 @@ public class ListCommand extends Command {
      * @param taskManager The manager handling tasks.
      * @param taskStorage The storage to save tasks.
      */
-    public void execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
+    public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         if (taskManager.countTasks() == 0) {
-            System.out.println(" There are no tasks in this list.");
-            System.out.println(" Let's create a new task!!!");
+            return " There are no tasks in this list.\n"
+                    + " Let's create a new task!!!";
         } else {
-            System.out.println(" Here are the tasks in your list:");
-            taskManager.list();
+            return " Here are the tasks in your list:\n"
+                    + taskManager.list();
         }
     }
 

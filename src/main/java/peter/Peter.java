@@ -11,6 +11,7 @@ import peter.ui.Ui;
  */
 public class Peter {
 
+    private static final String DEFAULT_FILE_PATH = "./data/Peter.txt";
     private TaskManager taskManager;
     private final TaskStorage taskStorage;
     private final Ui ui;
@@ -18,12 +19,10 @@ public class Peter {
     /**
      * Constructs a new instance of Peter.
      * Initializes the user interface, task storage, and task manager.
-     *
-     * @param filePath The file path where task data is stored.
      */
-    public Peter(String filePath) {
+    public Peter() {
         ui = new Ui();
-        taskStorage = new TaskStorage(filePath);
+        taskStorage = new TaskStorage(DEFAULT_FILE_PATH);
         taskStorage.createDataFile();
         try {
             taskManager = new TaskManager(taskStorage.loadTasks());
@@ -35,38 +34,24 @@ public class Peter {
 
     /**
      * Starts and runs the task management system.
-     * Displays a welcome message, processes user commands, and handles errors.
+     * Displays a welcome message
      */
-    public void run() {
-        ui.showLine();
-        ui.space();
-        ui.welcome();
-        ui.space();
-        ui.showLine();
-        boolean isExit = false;
-        while (!isExit) {
-            try {
-                String fullCommand = ui.readCommand();
-                ui.space();
-                Command command = new CommandParser()
-                        .makeSenseUserCommand(fullCommand);
-                command.execute(ui, taskManager, taskStorage);
-                isExit = command.isTerminal();
-            } catch (Exception e) {
-                ui.showError(e.getMessage());
-            } finally {
-                ui.space();
-                ui.showLine();
-            }
-        }
+    public String getGreeting() {
+        return ui.welcome();
     }
 
     /**
-     * Main method to launch the Peter application.
-     *
-     * @param args Command-line arguments (not used).
+     * Generates a response for the user's chat message.
      */
-    public static void main(String[] args) {
-        new Peter("./data/Peter.txt").run();
+    public String getResponse(String input) {
+        try {
+            String fullCommand = ui.readCommand(input);
+            Command command = new CommandParser()
+                    .makeSenseUserCommand(fullCommand);
+            return command.execute(ui, taskManager, taskStorage);
+        } catch (Exception e) {
+            return ui.showError(e.getMessage());
+        }
     }
+
 }

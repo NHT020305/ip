@@ -17,8 +17,8 @@ public class ByeCommand extends Command {
      * @param taskManager The manager handling tasks.
      * @param taskStorage The storage to save tasks.
      */
-    public void execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
-        ui.goodbye();
+    public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
+        return ui.goodbye();
     }
 
     /**
