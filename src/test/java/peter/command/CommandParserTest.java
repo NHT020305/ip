@@ -23,7 +23,6 @@ import peter.exception.InvalidTaskFormatException;
 import peter.exception.MeaninglessCommandException;
 
 
-
 public class CommandParserTest {
 
     private static final String MEANINGLESS_COMMAND =
@@ -111,5 +110,4 @@ public class CommandParserTest {
                 parser.makeSenseUserCommand("meaninglessCommand"));
         assertEquals(MEANINGLESS_COMMAND, exception.getMessage());
     }
-
 }
