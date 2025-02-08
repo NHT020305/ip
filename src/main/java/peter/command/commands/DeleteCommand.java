@@ -32,18 +32,22 @@ public class DeleteCommand extends Command {
      * @param taskManager The manager handling tasks.
      * @param taskStorage The storage to save tasks.
      */
-    public void execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
+    public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         Task task = taskManager.delete(index);
-        System.out.println(" Noted. I've removed this task:");
-        System.out.println("  " + task);
+        String output = " Noted. I've removed this task:\n"
+                + "  " + task + "\n";
         if (taskManager.countTasks() == 0) {
-            System.out.println(" Now your task list is empty!!!");
+            output += " Now your task list is empty!!!";
         } else {
             String isMany = taskManager.countTasks() > 1 ? "s" : "";
-            System.out.println(" Now you have " + taskManager.countTasks()
-                    + " task" + isMany + " in the list.");
+            output += " Now you have "
+                    + taskManager.countTasks()
+                    + " task"
+                    + isMany
+                    + " in the list.";
         }
         taskStorage.saveTasks(taskManager);
+        return output;
     }
 
     /**

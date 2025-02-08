@@ -34,13 +34,14 @@ public class AddCommand extends Command {
      * @param taskStorage The storage to save tasks.
      * @throws RepeatedTaskException If the task already exists.
      */
-    public void execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) throws RepeatedTaskException {
+    public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) throws RepeatedTaskException {
         taskManager.add(task);
-        System.out.println(" Got it. I've added this task:");
-        System.out.println("  " + task);
         String isMany = taskManager.countTasks() > 1 ? "s" : "";
-        System.out.println(" Now you have " + taskManager.countTasks() + " task" + isMany + " in the list.");
+        String response = "Got it. I've added this task:\n"
+                + "  " + task + "\n"
+                + "Now you have " + taskManager.countTasks() + " task" + isMany + " in the list.";
         taskStorage.saveTasks(taskManager);
+        return response;
     }
 
     /**

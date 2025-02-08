@@ -31,10 +31,10 @@ public class FindCommand extends Command {
      * @param taskManager The manager handling tasks.
      * @param taskStorage The storage to save tasks.
      */
-    public void execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
-        System.out.println(" Here are the tasks in your list matching \"" + keyWord + "\":");
+    public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         TaskManager newTaskManager = new TaskManager(taskManager.search(keyWord));
-        newTaskManager.list();
+        return " Here are the tasks in your list matching \"" + keyWord + "\":\n"
+                + newTaskManager.list();
     }
 
     /**

@@ -31,11 +31,11 @@ public class UnmarkCommand extends Command {
      * @param taskManager The manager handling tasks.
      * @param taskStorage The storage to save tasks.
      */
-    public void execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
+    public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         taskManager.markAsNotDone(index);
-        System.out.println(" OK, I've marked this task as not done yet:");
-        System.out.println("  " + taskManager.getTask(index));
         taskStorage.saveTasks(taskManager);
+        return " OK, I've marked this task as not done yet:"
+                + "  " + taskManager.getTask(index);
     }
 
     /**

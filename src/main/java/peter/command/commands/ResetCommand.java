@@ -17,11 +17,11 @@ public class ResetCommand extends Command {
      * @param taskManager The manager handling tasks.
      * @param taskStorage The storage to save tasks.
      */
-    public void execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
+    public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         taskManager.reset();
-        System.out.println(" Got it. Now your task list is empty.");
-        System.out.println(" Let's create a new task!!!");
         taskStorage.saveTasks(taskManager);
+        return " Got it. Now your task list is empty.\n"
+                + "Let's create a new task!!!";
     }
 
     /**

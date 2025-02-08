@@ -63,10 +63,12 @@ public class TaskManager {
     /**
      * Lists all tasks.
      */
-    public void list() {
+    public String list() {
+        StringBuilder output = new StringBuilder();
         for (int i = 0; i < this.tasks.size(); i++) {
-            System.out.printf("    %d. %s%n", i + 1, this.tasks.get(i));
+            output.append(String.format("    %d. %s%n", i + 1, this.tasks.get(i) + "\n"));
         }
+        return output.toString();
     }
 
     /**

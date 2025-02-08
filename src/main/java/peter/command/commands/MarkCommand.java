@@ -31,11 +31,11 @@ public class MarkCommand extends Command {
      * @param taskManager The manager handling tasks.
      * @param taskStorage The storage to save tasks.
      */
-    public void execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
+    public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         taskManager.markAsDone(index);
-        System.out.println(" Nice! I've marked this task as done:");
-        System.out.println("   " + taskManager.getTask(index));
         taskStorage.saveTasks(taskManager);
+        return " Nice! I've marked this task as done:\n"
+                + " " + taskManager.getTask(index);
     }
 
     /**
