@@ -37,7 +37,6 @@ public class Peter {
      * Starts and runs the task management system.
      * Displays a welcome message, processes user commands, and handles errors.
      */
-    @SuppressWarnings("checkstyle:WhitespaceAround")
     public void run() {
         ui.showLine();
         ui.space();
