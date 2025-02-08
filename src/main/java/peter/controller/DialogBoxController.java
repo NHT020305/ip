@@ -35,7 +35,7 @@ public class DialogBoxController extends HBox {
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         dialog.setText(text);
         displayPicture.setImage(img);

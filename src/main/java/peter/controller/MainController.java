@@ -1,5 +1,6 @@
 package peter.controller;
 
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 
 import javafx.application.Platform;
@@ -27,8 +28,10 @@ public class MainController extends AnchorPane {
 
     private Peter peter;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
-    private Image peterImage = new Image(this.getClass().getResourceAsStream("/images/peter.png"));
+    private final Image userImage = new Image(Objects.requireNonNull(
+            this.getClass().getResourceAsStream("/images/user.png")));
+    private final Image peterImage = new Image(Objects.requireNonNull(
+            this.getClass().getResourceAsStream("/images/peter.png")));
 
     @FXML
     public void initialize() {
@@ -47,7 +50,7 @@ public class MainController extends AnchorPane {
      * the dialog container. Clears the user input after processing.
      */
     @FXML
-    private void handleUserInput() throws InterruptedException {
+    private void handleUserInput() {
         String input = userInput.getText();
         String response = peter.getResponse(input);
         dialogContainer.getChildren().addAll(
@@ -58,7 +61,6 @@ public class MainController extends AnchorPane {
         if (response.equals("Bye. PETER chatbot hopes to see you again soon!")) {
             CompletableFuture.delayedExecutor(2, java.util.concurrent.TimeUnit.SECONDS)
                     .execute(Platform::exit);
-            ;
         }
     }
 }
