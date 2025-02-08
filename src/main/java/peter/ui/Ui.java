@@ -8,8 +8,8 @@ public class Ui {
      * Displays a welcome message to the user.
      */
     public String welcome() {
-        return " Welcome to PETER chatbot!\n"
-                + " Type \"instruction\" to know how to use";
+        return "Welcome to PETER chatbot!\n"
+                + "Type \"instruction\" to know how to use";
     }
 
     /**
@@ -36,7 +36,7 @@ public class Ui {
      * Displays a goodbye message to the user.
      */
     public String goodbye() {
-        return " Bye. PETER chatbot hopes to see you again soon!";
+        return "Bye. PETER chatbot hopes to see you again soon!";
     }
 
     /**
@@ -45,7 +45,7 @@ public class Ui {
      * @param message The error message to display.
      */
     public String showError(String message) {
-        return (" " + message);
+        return (message);
     }
 
     /**
@@ -54,7 +54,6 @@ public class Ui {
      * @return The command input by the user, converted to lowercase and trimmed.
      */
     public String readCommand(String input) {
-        System.out.print("Message PETER: ");
         return input.trim().toLowerCase();
     }
 }

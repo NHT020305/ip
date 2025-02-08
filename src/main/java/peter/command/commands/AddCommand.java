@@ -38,7 +38,7 @@ public class AddCommand extends Command {
         taskManager.add(task);
         String isMany = taskManager.countTasks() > 1 ? "s" : "";
         String response = "Got it. I've added this task:\n"
-                + "  " + task + "\n"
+                + "    " + task + "\n"
                 + "Now you have " + taskManager.countTasks() + " task" + isMany + " in the list.";
         taskStorage.saveTasks(taskManager);
         return response;

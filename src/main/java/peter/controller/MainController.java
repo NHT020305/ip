@@ -24,8 +24,8 @@ public class MainController extends AnchorPane {
 
     private Peter peter;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/my.png"));
-    private Image peterImage = new Image(this.getClass().getResourceAsStream("/images/my_timetable.png"));
+    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/user.png"));
+    private Image peterImage = new Image(this.getClass().getResourceAsStream("/images/peter.png"));
 
     @FXML
     public void initialize() {

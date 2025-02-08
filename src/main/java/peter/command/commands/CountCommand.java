@@ -18,21 +18,16 @@ public class CountCommand extends Command {
      * @param taskStorage The storage to save tasks.
      */
     public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
-        String output = "";
         if (taskManager.countTasks() == 0) {
-            output = """
-                     There are no tasks in this list.
-                     Let's create a new task!!!
-                    """;
+            return "There are no tasks in this list.\n"
+                     + "Let's create a new task!!!";
         }
         String isMany = taskManager.countTasks() > 1 ? "s" : "";
-        output += " You have "
+        return "You have "
                 + taskManager.countTasks()
                 + " task"
                 + isMany
                 + " in the list.";
-        taskStorage.saveTasks(taskManager);
-        return output;
     }
 
     /**

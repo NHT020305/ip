@@ -19,10 +19,10 @@ public class ListCommand extends Command {
      */
     public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         if (taskManager.countTasks() == 0) {
-            return " There are no tasks in this list.\n"
-                    + " Let's create a new task!!!";
+            return "There are no tasks in this list.\n"
+                    + "Let's create a new task!!!";
         } else {
-            return " Here are the tasks in your list:\n"
+            return "Here are the tasks in your list:\n"
                     + taskManager.list();
         }
     }

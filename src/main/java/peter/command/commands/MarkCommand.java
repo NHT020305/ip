@@ -34,8 +34,8 @@ public class MarkCommand extends Command {
     public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         taskManager.markAsDone(index);
         taskStorage.saveTasks(taskManager);
-        return " Nice! I've marked this task as done:\n"
-                + " " + taskManager.getTask(index);
+        return "Nice! I've marked this task as done:\n"
+                + "    " + taskManager.getTask(index);
     }
 
     /**

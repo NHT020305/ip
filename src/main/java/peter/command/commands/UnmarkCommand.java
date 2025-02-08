@@ -34,8 +34,8 @@ public class UnmarkCommand extends Command {
     public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         taskManager.markAsNotDone(index);
         taskStorage.saveTasks(taskManager);
-        return " OK, I've marked this task as not done yet:"
-                + "  " + taskManager.getTask(index);
+        return "OK, I've marked this task as not done yet:\n"
+                + "    " + taskManager.getTask(index);
     }
 
     /**

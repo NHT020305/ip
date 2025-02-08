@@ -34,13 +34,13 @@ public class DeleteCommand extends Command {
      */
     public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         Task task = taskManager.delete(index);
-        String output = " Noted. I've removed this task:\n"
-                + "  " + task + "\n";
+        String output = "Noted. I've removed this task:\n"
+                + "    " + task + "\n";
         if (taskManager.countTasks() == 0) {
-            output += " Now your task list is empty!!!";
+            output += "Now your task list is empty!!!";
         } else {
             String isMany = taskManager.countTasks() > 1 ? "s" : "";
-            output += " Now you have "
+            output += "Now you have "
                     + taskManager.countTasks()
                     + " task"
                     + isMany

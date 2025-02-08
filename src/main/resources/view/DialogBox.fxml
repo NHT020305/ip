@@ -13,7 +13,8 @@
          xmlns="http://javafx.com/javafx/17"
          xmlns:fx="http://javafx.com/fxml/1">
   <children>
-    <Label fx:id="dialog" text="Label" wrapText="true" minHeight="-Infinity"/>
+    <Label fx:id="dialog" style= "-fx-text-fill: blue; -fx-font-family: 'Roboto'; -fx-font-size: 18px;"
+           text="Label" wrapText="true" minHeight="-Infinity"/>
     <ImageView fx:id="displayPicture" fitHeight="99.0" fitWidth="99.0" pickOnBounds="true" preserveRatio="true" />
   </children>
   <padding>

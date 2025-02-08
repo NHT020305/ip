@@ -66,7 +66,7 @@ public class TaskManager {
     public String list() {
         StringBuilder output = new StringBuilder();
         for (int i = 0; i < this.tasks.size(); i++) {
-            output.append(String.format("    %d. %s%n", i + 1, this.tasks.get(i) + "\n"));
+            output.append(String.format("   %d. %s%n", i + 1, this.tasks.get(i)));
         }
         return output.toString();
     }

@@ -33,7 +33,7 @@ public class FindCommand extends Command {
      */
     public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         TaskManager newTaskManager = new TaskManager(taskManager.search(keyWord));
-        return " Here are the tasks in your list matching \"" + keyWord + "\":\n"
+        return "Here are the tasks in your list matching \"" + keyWord + "\":\n"
                 + newTaskManager.list();
     }
 
