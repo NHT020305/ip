@@ -22,8 +22,10 @@ public class ListCommand extends Command {
             return "There are no tasks in this list.\n"
                     + "Let's create a new task!!!";
         } else {
+            String isMany = taskManager.countTasks() > 1 ? "s" : "";
             return "Here are the tasks in your list:\n"
-                    + taskManager.list();
+                    + taskManager.list() + "You have "
+                    + taskManager.countTasks() + " task" + isMany + " in the list.";
         }
     }
 

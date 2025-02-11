@@ -15,6 +15,7 @@ public class Peter {
     private TaskManager taskManager;
     private final TaskStorage taskStorage;
     private final Ui ui;
+    private String commandType;
 
     /**
      * Constructs a new instance of Peter.
@@ -48,10 +49,15 @@ public class Peter {
             String fullCommand = ui.readCommand(input);
             Command command = new CommandParser()
                     .makeSenseUserCommand(fullCommand);
+            commandType = command.getClass().getSimpleName();
             return command.execute(ui, taskManager, taskStorage);
         } catch (Exception e) {
             return ui.showError(e.getMessage());
         }
+    }
+
+    public String getCommandType() {
+        return commandType;
     }
 
 }

@@ -10,11 +10,9 @@ import javafx.stage.Stage;
 import peter.controller.MainController;
 
 /**
- * A GUI for Duke using FXML.
+ * A GUI for Peter using FXML.
  */
 public class Main extends Application {
-
-    private final Peter peter = new Peter();
 
     @Override
     public void start(Stage stage) {
@@ -23,8 +21,10 @@ public class Main extends Application {
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
             stage.setScene(scene);
-            fxmlLoader.<MainController>getController().setDuke(peter); //inject the Duke instance
             stage.show();
+            MainController controller = fxmlLoader.getController();
+            stage.show();
+            controller.setPeter();
         } catch (IOException e) {
             e.printStackTrace();
         }

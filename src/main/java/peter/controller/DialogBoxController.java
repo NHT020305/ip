@@ -35,7 +35,7 @@ public class DialogBoxController extends HBox {
             fxmlLoader.setRoot(this);
             fxmlLoader.load();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error loading DialogBox FXML: " + e.getMessage(), e);
         }
         dialog.setText(text);
         displayPicture.setImage(img);
@@ -52,13 +52,36 @@ public class DialogBoxController extends HBox {
         dialog.getStyleClass().add("reply-label");
     }
 
+    private void changeDialogStyle(String commandType) {
+        switch (commandType) {
+        case "AddCommand":
+            dialog.getStyleClass().add("add-label");
+            break;
+        case "MarkCommand":
+            dialog.getStyleClass().add("marked-label");
+            break;
+        case "DeleteCommand":
+            dialog.getStyleClass().add("delete-label");
+            break;
+        default:
+            // Do nothing
+        }
+    }
+
     public static DialogBoxController getUserDialog(String text, Image img) {
         return new DialogBoxController(text, img);
     }
 
-    public static DialogBoxController getPeterDialog(String text, Image img) {
+    public static DialogBoxController getPeterDialogFirst(String text, Image img) {
         var db = new DialogBoxController(text, img);
         db.flip();
+        return db;
+    }
+
+    public static DialogBoxController getPeterDialog(String text, Image img, String commandType) {
+        var db = new DialogBoxController(text, img);
+        db.flip();
+        db.changeDialogStyle(commandType);
         return db;
     }
 }

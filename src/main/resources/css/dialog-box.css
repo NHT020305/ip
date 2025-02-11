@@ -1,19 +1,37 @@
 .label {
-    -fx-font-size: 16px;
+    -fx-font: 14px "Nunito", sans-serif;
     -fx-font-weight: bold;
     -fx-background-color: linear-gradient(to bottom right, #00ffbf, #00ddff);
     -fx-border-color: #d55e00 #009e73 #cc79a7 #0072b2;
-    -fx-border-width: 2px;
+    -fx-border-width: 8px;
     -fx-background-radius: 1em 1em 0 1em;
     -fx-border-radius: 1em 1em 0 1em;
-    -fx-padding: 6px;
+    -fx-padding: 20px;
     -fx-border-insets: 0px 7px 0px 7px;
     -fx-background-insets: 0px 7px 0px 7px;
+    -fx-max-width: 500px;
 }
 
 .reply-label {
+    -fx-text-fill: white;
+    -fx-background-color: black;
     -fx-background-radius: 1em 1em 1em 0;
     -fx-border-radius: 1em 1em 1em 0;
+}
+
+.add-label {
+    -fx-text-fill: black;
+    -fx-background-color: yellow;
+}
+
+.marked-label {
+    -fx-text-fill: black;
+    -fx-background-color: palegreen;
+}
+
+.delete-label {
+    -fx-text-fill: black;
+    -fx-background-color: lightpink;
 }
 
 #displayPicture {

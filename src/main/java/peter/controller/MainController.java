@@ -33,16 +33,23 @@ public class MainController extends AnchorPane {
     private final Image peterImage = new Image(Objects.requireNonNull(
             this.getClass().getResourceAsStream("/images/peter.png")));
 
-    @FXML
+    /**
+     * Initializes the dialog container to automatically scroll to the bottom whenever new content
+     * is added.
+     */
     public void initialize() {
+        assert scrollPane != null : "ScrollPane is not initialized!";
+        assert dialogContainer != null : "DialogContainer is not initialized!";
+        assert userInput != null : "UserInput field is not initialized!";
+        assert sendButton != null : "SendButton is not initialized!";
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        String greeting = peter.getGreeting();
+        dialogContainer.getChildren().add(DialogBoxController.getPeterDialogFirst(greeting, peterImage));
     }
 
     /** Injects the Duke instance */
-    public void setDuke(Peter p) {
-        peter = p;
-        String greeting = peter.getGreeting();
-        dialogContainer.getChildren().add(DialogBoxController.getPeterDialog(greeting, peterImage));
+    public void setPeter() {
+        peter = new Peter();
     }
 
     /**
@@ -53,9 +60,10 @@ public class MainController extends AnchorPane {
     private void handleUserInput() {
         String input = userInput.getText();
         String response = peter.getResponse(input);
+        String commandType = peter.getCommandType();
         dialogContainer.getChildren().addAll(
                 DialogBoxController.getUserDialog(input, userImage),
-                DialogBoxController.getPeterDialog(response, peterImage)
+                DialogBoxController.getPeterDialog(response, peterImage, commandType)
         );
         userInput.clear();
         if (response.equals("Bye. PETER chatbot hopes to see you again soon!")) {

@@ -18,18 +18,18 @@ public class Ui {
     public String showInstruction() {
         return """
                 Here are the instructions for using Peter chatbot:
-                    "list": list all the tasks in your list.
-                    "delete <i>": delete the ith task in your list.
-                    "reset": delete all the tasks in your list.
-                    "count": show the number of tasks in your list.
-                    "mark <i>": mark the ith task in your list as done.
-                    "unmark <i>": mark the ith task in your list as not done.
-                    "find <keyword>": list all the tasks matching that keyword.
-                    "bye": exit Peter chatbot.
-                    Create a Todo: "todo <task name>".
-                    Create a Deadline: "deadline <task name> /by <date & time>".
-                    Create an event: "event <task name> /from <date & time> /to <date & time>".
-                    Date & time format: "dd/MM/yyyy HH:mm".""";
+                    + "list": list all the tasks in your list.
+                    + "delete <i>": delete the ith task in your list.
+                    + "reset": delete all the tasks in your list.
+                    + "count": show the number of tasks in your list.
+                    + "mark <i>": mark the ith task in your list as done.
+                    + "unmark <i>": mark the ith task in your list as not done.
+                    + "find <keyword>": list all the tasks matching keyword.
+                    + "bye": exit Peter chatbot.
+                    + new Todo: "todo <name>".
+                    + new Deadline: "deadline <name> /by <time>".
+                    + new event: "event <name> /from <time> /to <time>".
+                    + time format: "dd/MM/yyyy HH:mm".""";
     }
 
     /**

@@ -23,11 +23,8 @@ public class CountCommand extends Command {
                      + "Let's create a new task!!!";
         }
         String isMany = taskManager.countTasks() > 1 ? "s" : "";
-        return "You have "
-                + taskManager.countTasks()
-                + " task"
-                + isMany
-                + " in the list.";
+        return "You have " + taskManager.countTasks() + " task"
+                + isMany + " in the list.";
     }
 
     /**
