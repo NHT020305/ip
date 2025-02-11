@@ -26,7 +26,7 @@ public class Main extends Application {
             stage.show();
             controller.setPeter();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
 }
