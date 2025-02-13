@@ -12,6 +12,7 @@ import peter.ui.Ui;
 public class Peter {
 
     private static final String DEFAULT_FILE_PATH = "./data/Peter.txt";
+    private static final String NULL_CLASS_NAME = "Unknown";
     private TaskManager taskManager;
     private final TaskStorage taskStorage;
     private final Ui ui;
@@ -34,14 +35,6 @@ public class Peter {
     }
 
     /**
-     * Starts and runs the task management system.
-     * Displays a welcome message
-     */
-    public String getGreeting() {
-        return ui.welcome();
-    }
-
-    /**
      * Generates a response for the user's chat message.
      */
     public String getResponse(String input) {
@@ -52,6 +45,7 @@ public class Peter {
             commandType = command.getClass().getSimpleName();
             return command.execute(ui, taskManager, taskStorage);
         } catch (Exception e) {
+            commandType = NULL_CLASS_NAME;
             return ui.showError(e.getMessage());
         }
     }

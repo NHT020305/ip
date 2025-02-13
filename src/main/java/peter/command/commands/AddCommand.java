@@ -6,6 +6,7 @@ import peter.storage.TaskStorage;
 import peter.task.Task;
 import peter.task.TaskManager;
 import peter.ui.Ui;
+import peter.utils.ReplyMessage;
 
 /**
  * Represents a command to add a task to the task list.
@@ -37,11 +38,8 @@ public class AddCommand extends Command {
     public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) throws RepeatedTaskException {
         taskManager.add(task);
         String isMany = taskManager.countTasks() > 1 ? "s" : "";
-        String response = "Got it. I've added this task:\n"
-                + "    " + task + "\n"
-                + "Now you have " + taskManager.countTasks() + " task" + isMany + " in the list.";
         taskStorage.saveTasks(taskManager);
-        return response;
+        return String.format(ReplyMessage.ADD_MESSAGE, task, taskManager.countTasks(), isMany);
     }
 
     /**

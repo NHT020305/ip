@@ -3,12 +3,12 @@ package peter.task;
 import java.util.ArrayList;
 
 import peter.exception.RepeatedTaskException;
+import peter.utils.ErrorMessage;
 
 /**
  * Manages a list of tasks, providing operations to add, remove, and modify tasks.
  */
 public class TaskManager {
-
     protected ArrayList<Task> tasks;
 
     /**
@@ -54,8 +54,7 @@ public class TaskManager {
      */
     public Task getTask(int index) {
         if (index < 0 || index >= tasks.size()) {
-            throw new IndexOutOfBoundsException("OOPS!!! " + (index + 1)
-                    + " is not a valid task number.");
+            throw new IndexOutOfBoundsException(String.format(ErrorMessage.INVALID_TASK_NUMBER, index + 1));
         }
         return tasks.get(index);
     }
@@ -84,9 +83,10 @@ public class TaskManager {
      * @param task The task to add.
      */
     public void add(Task task) throws RepeatedTaskException {
-        for (Task t: tasks) {
+        assert task != null : "Task should not be null";
+        for (Task t : tasks) {
             if (t.equals(task)) {
-                throw new RepeatedTaskException("OOPS!!! This task already exists in your list.");
+                throw new RepeatedTaskException(ErrorMessage.ALREADY_EXISTS);
             }
         }
         tasks.add(task);
@@ -101,8 +101,7 @@ public class TaskManager {
      */
     public Task delete(int index) {
         if (index < 0 || index >= tasks.size()) {
-            throw new IndexOutOfBoundsException("OOPS!!! " + (index + 1)
-                    + " is not a valid task number.");
+            throw new IndexOutOfBoundsException(String.format(ErrorMessage.INVALID_TASK_NUMBER, index + 1));
         }
         return tasks.remove(index);
     }
@@ -115,8 +114,7 @@ public class TaskManager {
      */
     public void markAsDone(int index) {
         if (index < 0 || index >= tasks.size()) {
-            throw new IndexOutOfBoundsException("OOPS!!! " + (index + 1)
-                    + " is not a valid task number.");
+            throw new IndexOutOfBoundsException(String.format(ErrorMessage.INVALID_TASK_NUMBER, index + 1));
         }
         tasks.get(index).markDone();
     }
@@ -129,8 +127,7 @@ public class TaskManager {
      */
     public void markAsNotDone(int index) {
         if (index < 0 || index >= tasks.size()) {
-            throw new IndexOutOfBoundsException("OOPS!!! " + (index + 1)
-                    + " is not a valid task number.");
+            throw new IndexOutOfBoundsException(String.format(ErrorMessage.INVALID_TASK_NUMBER, index + 1));
         }
         tasks.get(index).markNotDone();
     }
@@ -142,7 +139,7 @@ public class TaskManager {
      */
     public ArrayList<Task> search(String keyWord) {
         ArrayList<Task> newTaskList = new ArrayList<>();
-        for (Task task: tasks) {
+        for (Task task : tasks) {
             if (task.getDescription().toLowerCase().contains(keyWord.toLowerCase())) {
                 newTaskList.add(task);
             }

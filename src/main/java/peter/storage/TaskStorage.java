@@ -18,13 +18,14 @@ import peter.exception.InvalidDateTimeFormatException;
 import peter.exception.InvalidTaskFormatException;
 import peter.task.Task;
 import peter.task.TaskManager;
+import peter.utils.DateTime;
+import peter.utils.TaskKeyword;
 
 
 /**
  * Handles storage and retrieval of tasks to and from a data file.
  */
 public class TaskStorage {
-
     private final String filePath;
 
     /**
@@ -33,6 +34,7 @@ public class TaskStorage {
      * @param filePath The file path where task data is stored.
      */
     public TaskStorage(String filePath) {
+        assert filePath != null : "File path should not be null";
         this.filePath = filePath;
     }
 
@@ -64,24 +66,37 @@ public class TaskStorage {
      * @param task The task string to convert.
      * @return The converted task string.
      */
-    private String convert(String task) {
-        if (task.startsWith("[T]")) {
-            return "todo " + task.substring(7);
-        } else if (task.startsWith("[D]")) {
-            String[] parts = task.substring(7).split("\\(by:");
-            String date = parts[1].split("\\)")[0].trim();
-            date = LocalDateTime.parse(date).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-            return "deadline " + parts[0].trim() + " /by " + date;
+    private Task convertToTask(String task) throws InvalidDateTimeFormatException,
+            EmptyTaskException, InvalidTaskFormatException {
+        String output;
+        if (task.startsWith(TaskKeyword.TODO_TAG)) {
+            output = String.format("%s %s", TaskKeyword.TODO, task.substring(
+                    TaskKeyword.NUMBER_OF_CHARACTERS_BEFORE_DESCRIPTION));
+        } else if (task.startsWith(TaskKeyword.DEADLINE_TAG)) {
+            String[] deadlineParts = task.substring(
+                    TaskKeyword.NUMBER_OF_CHARACTERS_BEFORE_DESCRIPTION).split(DateTime.BY_LOAD_TASKS);
+            String deadlineDescription = deadlineParts[0].trim();
+            String date = LocalDateTime.parse(deadlineParts[1].split("\\)")[0].trim()).format(
+                    DateTimeFormatter.ofPattern(DateTime.DATE_FORMAT));
+            output = String.format("%s %s %s %s ", TaskKeyword.DEADLINE, deadlineDescription,
+                    DateTime.BY_COMMAND, date);
         } else {
-            String[] parts = task.substring(7).split("\\(from:");
-            String[] datePart = parts[1].split("to:");
-            String fromPart = datePart[0].trim();
-            String toPart = datePart[1].split("\\)")[0].trim();
-            fromPart = LocalDateTime.parse(fromPart).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-            toPart = LocalDateTime.parse(toPart).format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-            return "event " + parts[0].trim() + " /from "
-                    + fromPart + " /to " + toPart;
+            String[] eventParts = task.substring(
+                    TaskKeyword.NUMBER_OF_CHARACTERS_BEFORE_DESCRIPTION).split(DateTime.FROM_LOAD_TASKS);
+            String[] dateParts = eventParts[1].split(DateTime.TO_LOAD_TASKS);
+            String eventDescription = eventParts[0].trim();
+            String fromPart = LocalDateTime.parse(dateParts[0].trim()).format(
+                    DateTimeFormatter.ofPattern(DateTime.DATE_FORMAT));
+            String toPart = LocalDateTime.parse(dateParts[1].split("\\)")[0].trim()).format(
+                    DateTimeFormatter.ofPattern(DateTime.DATE_FORMAT));
+            output = String.format("%s %s %s %s %s %s", TaskKeyword.EVENT, eventDescription,
+                    DateTime.FROM_COMMAND, fromPart, DateTime.TO_COMMAND, toPart);
         }
+        Task newTask = new TaskGenerator().getTask(output);
+        if (task.contains(TaskKeyword.MARK_DONE)) {
+            newTask.markDone();
+        }
+        return newTask;
     }
 
     /**
@@ -95,14 +110,11 @@ public class TaskStorage {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
-                Task task = new TaskGenerator().getTask(convert(line));
-                if (line.contains("X")) {
-                    task.markDone();
-                }
+                Task task = convertToTask(line);
                 tasks.add(task);
             }
-        } catch (IOException | EmptyTaskException | InvalidTaskFormatException
-                 | InvalidDateTimeFormatException e) {
+        } catch (IOException | InvalidDateTimeFormatException
+                 | EmptyTaskException | InvalidTaskFormatException e) {
             throw new RuntimeException(e);
         }
         return tasks;

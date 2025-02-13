@@ -4,6 +4,7 @@ import peter.command.Command;
 import peter.storage.TaskStorage;
 import peter.task.TaskManager;
 import peter.ui.Ui;
+import peter.utils.ReplyMessage;
 
 /**
  * Represents a command to find tasks containing a specified keyword.
@@ -33,9 +34,7 @@ public class FindCommand extends Command {
      */
     public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         TaskManager newTaskManager = new TaskManager(taskManager.search(keyWord));
-        return "Here are the tasks in your list matching \"" + keyWord + "\":\n"
-                + newTaskManager.list()
-                + " Number of results: " + newTaskManager.countTasks();
+        return String.format(ReplyMessage.FIND_MESSAGE, keyWord, newTaskManager.list(), newTaskManager.countTasks());
     }
 
     /**

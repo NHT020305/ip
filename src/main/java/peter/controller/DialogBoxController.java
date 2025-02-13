@@ -63,8 +63,10 @@ public class DialogBoxController extends HBox {
         case "DeleteCommand":
             dialog.getStyleClass().add("delete-label");
             break;
+        case "Unknown":
+            dialog.getStyleClass().add("unknown-label");
+            break;
         default:
-            // Do nothing
         }
     }
 

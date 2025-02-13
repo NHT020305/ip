@@ -4,6 +4,7 @@ import peter.command.Command;
 import peter.storage.TaskStorage;
 import peter.task.TaskManager;
 import peter.ui.Ui;
+import peter.utils.ReplyMessage;
 
 /**
  * Represents a command to mark a task as done.
@@ -34,8 +35,7 @@ public class MarkCommand extends Command {
     public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         taskManager.markAsDone(index);
         taskStorage.saveTasks(taskManager);
-        return "Nice! I've marked this task as done:\n"
-                + "    " + taskManager.getTask(index);
+        return String.format(ReplyMessage.MARK_MESSAGE, taskManager.getTask(index));
     }
 
     /**
