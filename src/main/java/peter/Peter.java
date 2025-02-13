@@ -13,7 +13,7 @@ public class Peter {
 
     private static final String DEFAULT_FILE_PATH = "./data/Peter.txt";
     private static final String NULL_CLASS_NAME = "Unknown";
-    private TaskManager taskManager;
+    private final TaskManager taskManager;
     private final TaskStorage taskStorage;
     private final Ui ui;
     private String commandType;
@@ -29,7 +29,6 @@ public class Peter {
         try {
             taskManager = new TaskManager(taskStorage.loadTasks());
         } catch (Exception e) {
-            taskManager = new TaskManager();
             throw new RuntimeException(e);
         }
     }
