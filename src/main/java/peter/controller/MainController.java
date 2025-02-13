@@ -12,14 +12,12 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import peter.Peter;
+import peter.utils.ReplyMessage;
 
 /**
  * Controller for the main GUI.
  */
 public class MainController extends AnchorPane {
-
-    private static final String WELCOME_MESSAGE = "Welcome to PETER chatbot!\n"
-            + "Type \"instruction\" to know how to use";
 
     @FXML
     private ScrollPane scrollPane;
@@ -44,7 +42,7 @@ public class MainController extends AnchorPane {
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
         dialogContainer.getChildren().add(DialogBoxController
-                .getPeterDialogFirst(WELCOME_MESSAGE, peterImage));
+                .getPeterDialogFirst(ReplyMessage.WELCOME_MESSAGE, peterImage));
     }
 
     /** Injects the Duke instance */

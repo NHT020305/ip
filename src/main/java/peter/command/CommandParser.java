@@ -10,6 +10,7 @@ import peter.command.commands.ListCommand;
 import peter.command.commands.MarkCommand;
 import peter.command.commands.ResetCommand;
 import peter.command.commands.UnmarkCommand;
+import peter.command.commands.UpdateCommand;
 import peter.exception.EmptyTaskException;
 import peter.exception.InvalidDateTimeFormatException;
 import peter.exception.InvalidTaskFormatException;
@@ -54,8 +55,17 @@ public class CommandParser {
         } else if (command.startsWith(CommandType.DELETE_COMMAND)) {
             return new DeleteCommand(Integer.parseInt(
                     command.split(" ")[1]) - 1);
-        } else if (command.startsWith(TaskKeyword.TODO) || command.startsWith(TaskKeyword.DEADLINE_TAG)
-                || command.startsWith(TaskKeyword.DEADLINE)) {
+        } else if (command.startsWith(CommandType.UPDATE_COMMAND)) {
+            String[] parts = command.split(" ");
+            int index = Integer.parseInt(parts[1]) - 1;
+            String typeOfUpdate = parts[2];
+            String updateDetails = parts[3];
+            if (parts.length == 5) {
+                updateDetails += " " + parts[4];
+            }
+            return new UpdateCommand(index, typeOfUpdate, updateDetails);
+        } else if (command.startsWith(TaskKeyword.TODO) || command.startsWith(TaskKeyword.DEADLINE)
+                || command.startsWith(TaskKeyword.EVENT)) {
             return new AddCommand(new TaskGenerator().getTask(command));
         } else if (command.startsWith(CommandType.FIND_COMMAND)) {
             return new FindCommand(command.substring(5));

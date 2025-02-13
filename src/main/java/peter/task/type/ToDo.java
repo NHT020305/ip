@@ -1,5 +1,7 @@
 package peter.task.type;
 
+import java.time.LocalDateTime;
+
 import peter.task.Task;
 import peter.utils.TaskKeyword;
 
@@ -27,6 +29,19 @@ public class ToDo extends Task {
             return this.description.equals(other.description);
         }
         return false;
+    }
+
+    public void updateDescription(String description) {
+        this.description = description;
+    }
+
+    public void updateTimeBy(LocalDateTime by) {
+    }
+
+    public void updateTimeFrom(LocalDateTime from) {
+    }
+
+    public void updateTimeTo(LocalDateTime by) {
     }
 
     /**

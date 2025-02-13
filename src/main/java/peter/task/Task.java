@@ -1,5 +1,7 @@
 package peter.task;
 
+import java.time.LocalDateTime;
+
 import peter.utils.TaskKeyword;
 
 /**
@@ -57,10 +59,12 @@ public abstract class Task {
      *
      * @return true if 2 tasks have the same description, false otherwise.
      */
-    //public abstract boolean isEqual(Task task);
-
     public abstract boolean equals(Task task);
 
+    public abstract void updateDescription(String description);
+    public abstract void updateTimeBy(LocalDateTime time);
+    public abstract void updateTimeFrom(LocalDateTime time);
+    public abstract void updateTimeTo(LocalDateTime time);
 
     /**
      * Returns a string representation of the task, including its type,

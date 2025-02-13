@@ -22,6 +22,7 @@ public class DialogBoxController extends HBox {
     private static final String ADD_COMMAND = "AddCommand";
     private static final String MARK_COMMAND = "MarkCommand";
     private static final String DELETE_COMMAND = "DeleteCommand";
+    private static final String UPDATE_COMMAND = "UpdateCommand";
     private static final String UNKNOWN = "Unknown";
     private static final String REPLY_LABEL = "reply-label";
     private static final String ADD_LABEL = "add-label";
@@ -63,7 +64,7 @@ public class DialogBoxController extends HBox {
 
     private void changeDialogStyle(String commandType) {
         switch (commandType) {
-        case ADD_COMMAND:
+        case ADD_COMMAND, UPDATE_COMMAND:
             dialog.getStyleClass().add(ADD_LABEL);
             break;
         case MARK_COMMAND:
@@ -74,9 +75,6 @@ public class DialogBoxController extends HBox {
             break;
         case UNKNOWN:
             dialog.getStyleClass().add(UNKNOWN_LABEL);
-            break;
-        case "Unknown":
-            dialog.getStyleClass().add("unknown-label");
             break;
         default:
         }

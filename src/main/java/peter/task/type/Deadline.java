@@ -37,6 +37,20 @@ public class Deadline extends Task {
         return false;
     }
 
+    public void updateDescription(String description) {
+        this.description = description;
+    }
+
+    public void updateTimeBy(LocalDateTime by) {
+        this.by = by;
+    }
+
+    public void updateTimeFrom(LocalDateTime from) {
+    }
+
+    public void updateTimeTo(LocalDateTime by) {
+    }
+
     /**
      * Returns a string representation of the Deadline task.
      *
@@ -44,6 +58,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return String.format("%s%s (by: %s)", TaskKeyword.DEADLINE, super.toString(), by);
+        return String.format("%s%s (by: %s)", TaskKeyword.DEADLINE_TAG, super.toString(), by);
     }
 }

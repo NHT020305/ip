@@ -5,16 +5,24 @@ package peter.utils;
  */
 public class ReplyMessage {
 
+    public static final String WELCOME_MESSAGE = """
+            Welcome to PETER chatbot!
+            Type "instruction" to know how to use""";
+
     public static final String INSTRUCTION_MESSAGE = """
             Here are the instructions for using Peter chatbot:
-                + "list": list all the tasks in your list.
-                + "delete <i>": delete the ith task in your list.
-                + "reset": delete all the tasks in your list.
-                + "count": show the number of tasks in your list.
-                + "mark <i>": mark the ith task in your list as done.
-                + "unmark <i>": mark the ith task in your list as not done.
-                + "find <keyword>": list all the tasks matching keyword.
-                + "bye": exit Peter chatbot.
+                + list all the tasks in your list: list
+                + delete the ith task in your list: delete <i>
+                + delete all the tasks in your list: reset
+                + show the number of tasks in your list: count
+                + mark the ith task in your list as done: mark <i>
+                + mark the ith task in your list as not done: unmark <i>
+                + list all the tasks matching keyword: find <keyword>
+                + update the ith task description in your list: update <i> /description <details>
+                + update the ith task deadline in your list: update <i> /by <details>
+                + update the ith task start time in your list: update <i> /from <details>
+                + update the ith task end time in your list: update <i> /to <details>
+                + exit Peter chatbot.
                 + add new todo: "todo <name>".
                 + add new deadline: "deadline <name> /by <time>".
                 + add new event: "event <name> /from <time> /to <time>".
@@ -35,17 +43,17 @@ public class ReplyMessage {
             "You have %d task%s in the list.";
 
     public static final String DELETE_ZERO_MESSAGE = """
-            Noted. I've removed this task::
+            Noted. I've removed this task:
                 %s
             Now your task list is empty!!!""";
 
     public static final String DELETE_MESSAGE = """
-            Noted. I've removed this task::
+            Noted. I've removed this task:
                 %s
             Now you have %d task%s in the list.""";
 
     public static final String FIND_MESSAGE = """
-            Here are the tasks in your list matching "%s"
+            Here are the tasks in your list matching "%s":
                 %s
             Number of results: %d""";
 
@@ -55,8 +63,7 @@ public class ReplyMessage {
 
     public static final String LIST_MESSAGE = """
             Here are the tasks in your list:.
-            %s
-            You have %d task%s in the list.""";
+            %sYou have %d task%s in the list.""";
 
     public static final String MARK_MESSAGE = """
             Nice! I've marked this task as done:
@@ -69,4 +76,8 @@ public class ReplyMessage {
     public static final String RESET_MESSAGE = """
             Got it. Now your task list is empty."
             Let's create a new task!!!""";
+
+    public static final String UPDATE_MESSAGE = """
+            Nice! I've updated this task as following:
+                %s""";
 }

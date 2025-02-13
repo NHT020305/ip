@@ -1,5 +1,7 @@
 package peter.command;
 
+import peter.exception.InvalidDateTimeFormatException;
+import peter.exception.MeaninglessCommandException;
 import peter.exception.RepeatedTaskException;
 import peter.storage.TaskStorage;
 import peter.task.TaskManager;
@@ -24,7 +26,7 @@ public abstract class Command {
      * @param taskStorage The storage system for tasks.
      */
     public abstract String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage)
-            throws RepeatedTaskException;
+            throws RepeatedTaskException, InvalidDateTimeFormatException, MeaninglessCommandException;
 
     /**
      * Checks if the command should terminate the program.

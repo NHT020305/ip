@@ -78,7 +78,7 @@ public class TaskStorage {
             String deadlineDescription = deadlineParts[0].trim();
             String date = LocalDateTime.parse(deadlineParts[1].split("\\)")[0].trim()).format(
                     DateTimeFormatter.ofPattern(DateTime.DATE_FORMAT));
-            output = String.format("%s %s %s %s ", TaskKeyword.DEADLINE, deadlineDescription,
+            output = String.format("%s %s %s %s", TaskKeyword.DEADLINE, deadlineDescription,
                     DateTime.BY_COMMAND, date);
         } else {
             String[] eventParts = task.substring(

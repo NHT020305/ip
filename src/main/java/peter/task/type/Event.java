@@ -3,7 +3,6 @@ package peter.task.type;
 import java.time.LocalDateTime;
 
 import peter.task.Task;
-import peter.utils.ReplyMessage;
 import peter.utils.TaskKeyword;
 
 
@@ -40,6 +39,21 @@ public class Event extends Task {
                     && this.to.equals(other.to);
         }
         return false;
+    }
+
+    public void updateDescription(String description) {
+        this.description = description;
+    }
+
+    public void updateTimeBy(LocalDateTime by) {
+    }
+
+    public void updateTimeFrom(LocalDateTime from) {
+        this.from = from;
+    }
+
+    public void updateTimeTo(LocalDateTime to) {
+        this.to = to;
     }
 
     /**

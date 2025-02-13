@@ -14,4 +14,5 @@ public class CommandType {
     public static final String UNMARK_COMMAND = "unmark";
     public static final String DELETE_COMMAND = "delete";
     public static final String FIND_COMMAND = "find";
+    public static final String UPDATE_COMMAND = "update";
 }

@@ -37,7 +37,7 @@ public class DeleteCommand extends Command {
         Task task = taskManager.delete(index);
         taskStorage.saveTasks(taskManager);
         if (taskManager.countTasks() == 0) {
-            return ReplyMessage.DELETE_ZERO_MESSAGE;
+            return String.format(ReplyMessage.DELETE_ZERO_MESSAGE, task);
         } else {
             String isMany = taskManager.countTasks() > 1 ? "s" : "";
             return String.format(ReplyMessage.DELETE_MESSAGE, task, taskManager.countTasks(), isMany);

@@ -34,7 +34,14 @@ public class TaskGenerator {
             String description = input.split(" ", 2)[1];
             return new ToDo(description);
         } else if (input.startsWith(TaskKeyword.DEADLINE)) {
-            String[] deadlineParts = getDeadlineParts(input);
+            if (input.trim().length() == TaskKeyword.DEADLINE.length()) {
+                throw new EmptyTaskException(String.format(ErrorMessage.EMPTY_TASK, TaskKeyword.EVENT));
+            }
+            String[] deadlineParts = input.substring(
+                    TaskKeyword.DEADLINE.length() + 1).trim().split(DateTime.BY_COMMAND);
+            if (deadlineParts.length != 2) {
+                throw new InvalidTaskFormatException(ErrorMessage.INVALID_TASK_FORMAT);
+            }
             String description = deadlineParts[0].trim();
             if (description.isEmpty()) {
                 throw new EmptyTaskException(String.format(ErrorMessage.EMPTY_TASK, TaskKeyword.DEADLINE));
@@ -42,7 +49,14 @@ public class TaskGenerator {
             String by = deadlineParts[1].trim();
             return new Deadline(description, new LocalDateTimeParser(by).convertToTime());
         } else {
-            String[] eventParts = getEventParts(input, input.substring(TaskKeyword.EVENT.length() + 1));
+            if (input.trim().length() == TaskKeyword.EVENT.length()) {
+                throw new EmptyTaskException(String.format(ErrorMessage.EMPTY_TASK, TaskKeyword.EVENT));
+            }
+            String[] eventParts = input.substring(
+                    TaskKeyword.EVENT.length() + 1).split(DateTime.FROM_COMMAND);
+            if (eventParts.length != 2) {
+                throw new InvalidTaskFormatException(ErrorMessage.INVALID_TASK_FORMAT);
+            }
             String description = eventParts[0].trim();
             if (description.isEmpty()) {
                 throw new EmptyTaskException(String.format(ErrorMessage.EMPTY_TASK, TaskKeyword.EVENT));
@@ -61,32 +75,5 @@ public class TaskGenerator {
             return new Event(description, new LocalDateTimeParser(from).convertToTime(),
                     new LocalDateTimeParser(to).convertToTime());
         }
-    }
-
-    private static String[] getEventParts(String input, String input1) throws EmptyTaskException,
-            InvalidTaskFormatException {
-        if (input.trim().length() == TaskKeyword.EVENT.length()) {
-            throw new EmptyTaskException(String.format(ErrorMessage.EMPTY_TASK, TaskKeyword.EVENT));
-        }
-        String[] eventParts = input1.split(DateTime.FROM_COMMAND);
-        if (eventParts.length != 2) {
-            throw new InvalidTaskFormatException(String.format(
-                    ErrorMessage.INVALID_TASK_FORMAT, input1));
-        }
-        return eventParts;
-    }
-
-    private static String[] getDeadlineParts(String input) throws EmptyTaskException,
-            InvalidTaskFormatException {
-        if (input.trim().length() == TaskKeyword.DEADLINE.length()) {
-            throw new EmptyTaskException(String.format(ErrorMessage.EMPTY_TASK, TaskKeyword.DEADLINE));
-        }
-        String deadline = input.substring(TaskKeyword.DEADLINE.length() + 1).trim();
-        String[] deadlineParts = deadline.split(DateTime.BY_COMMAND);
-        if (deadlineParts.length != 2) {
-            throw new InvalidTaskFormatException(String.format(
-                    ErrorMessage.INVALID_TASK_FORMAT, TaskKeyword.DEADLINE));
-        }
-        return deadlineParts;
     }
 }
