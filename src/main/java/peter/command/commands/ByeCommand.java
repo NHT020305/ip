@@ -4,6 +4,7 @@ import peter.command.Command;
 import peter.storage.TaskStorage;
 import peter.task.TaskManager;
 import peter.ui.Ui;
+import peter.utils.ReplyMessage;
 
 /**
  * Represents a command to exit the application.
@@ -18,7 +19,7 @@ public class ByeCommand extends Command {
      * @param taskStorage The storage to save tasks.
      */
     public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
-        return ui.goodbye();
+        return ReplyMessage.BYE_MESSAGE;
     }
 
     /**

@@ -3,6 +3,8 @@ package peter.task.type;
 import java.time.LocalDateTime;
 
 import peter.task.Task;
+import peter.utils.ReplyMessage;
+import peter.utils.TaskKeyword;
 
 
 /**
@@ -47,6 +49,6 @@ public class Event extends Task {
      */
     @Override
     public String toString() {
-        return "[E]" + super.toString() + " (from: " + from + " to: " + to + ")";
+        return String.format("%s%s (from: %s to: %s)", TaskKeyword.EVENT_TAG, super.toString(), from, to);
     }
 }

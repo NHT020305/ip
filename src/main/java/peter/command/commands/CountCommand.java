@@ -4,6 +4,7 @@ import peter.command.Command;
 import peter.storage.TaskStorage;
 import peter.task.TaskManager;
 import peter.ui.Ui;
+import peter.utils.ReplyMessage;
 
 /**
  * Represents a command to display the number of tasks in the task list.
@@ -19,12 +20,10 @@ public class CountCommand extends Command {
      */
     public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         if (taskManager.countTasks() == 0) {
-            return "There are no tasks in this list.\n"
-                     + "Let's create a new task!!!";
+            return ReplyMessage.COUNT_ZERO_MESSAGE;
         }
         String isMany = taskManager.countTasks() > 1 ? "s" : "";
-        return "You have " + taskManager.countTasks() + " task"
-                + isMany + " in the list.";
+        return String.format(ReplyMessage.COUNT_MESSAGE, taskManager.countTasks(), isMany);
     }
 
     /**

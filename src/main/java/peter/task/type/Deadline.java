@@ -3,6 +3,7 @@ package peter.task.type;
 import java.time.LocalDateTime;
 
 import peter.task.Task;
+import peter.utils.TaskKeyword;
 
 
 /**
@@ -43,6 +44,6 @@ public class Deadline extends Task {
      */
     @Override
     public String toString() {
-        return "[D]" + super.toString() + " (by: " + by + ")";
+        return String.format("%s%s (by: %s)", TaskKeyword.DEADLINE, super.toString(), by);
     }
 }

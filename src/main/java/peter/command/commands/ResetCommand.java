@@ -4,6 +4,7 @@ import peter.command.Command;
 import peter.storage.TaskStorage;
 import peter.task.TaskManager;
 import peter.ui.Ui;
+import peter.utils.ReplyMessage;
 
 /**
  * Represents a command to reset the task list by deleting all tasks.
@@ -20,8 +21,7 @@ public class ResetCommand extends Command {
     public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         taskManager.reset();
         taskStorage.saveTasks(taskManager);
-        return "Got it. Now your task list is empty.\n"
-                + "Let's create a new task!!!";
+        return ReplyMessage.RESET_MESSAGE;
     }
 
     /**

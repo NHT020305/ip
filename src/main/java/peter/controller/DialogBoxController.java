@@ -75,8 +75,10 @@ public class DialogBoxController extends HBox {
         case UNKNOWN:
             dialog.getStyleClass().add(UNKNOWN_LABEL);
             break;
+        case "Unknown":
+            dialog.getStyleClass().add("unknown-label");
+            break;
         default:
-            // Do nothing
         }
     }
 
