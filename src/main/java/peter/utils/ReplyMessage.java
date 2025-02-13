@@ -54,8 +54,7 @@ public class ReplyMessage {
 
     public static final String FIND_MESSAGE = """
             Here are the tasks in your list matching "%s":
-                %s
-            Number of results: %d""";
+            %sNumber of results: %d""";
 
     public static final String LIST_ZERO_MESSAGE = """
             There are no tasks in this list.
