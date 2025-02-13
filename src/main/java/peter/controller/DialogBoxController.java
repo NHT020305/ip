@@ -19,6 +19,15 @@ import javafx.scene.layout.HBox;
  * and a label containing text from the speaker.
  */
 public class DialogBoxController extends HBox {
+    private static final String ADD_COMMAND = "AddCommand";
+    private static final String MARK_COMMAND = "MarkCommand";
+    private static final String DELETE_COMMAND = "DeleteCommand";
+    private static final String UNKNOWN = "Unknown";
+    private static final String REPLY_LABEL = "reply-label";
+    private static final String ADD_LABEL = "add-label";
+    private static final String MARKED_LABEL = "marked-label";
+    private static final String DELETE_LABEL = "delete-label";
+    private static final String UNKNOWN_LABEL = "unknown-label";
     @FXML
     private Label dialog;
     @FXML
@@ -49,19 +58,22 @@ public class DialogBoxController extends HBox {
         Collections.reverse(tmp);
         getChildren().setAll(tmp);
         setAlignment(Pos.TOP_LEFT);
-        dialog.getStyleClass().add("reply-label");
+        dialog.getStyleClass().add(REPLY_LABEL);
     }
 
     private void changeDialogStyle(String commandType) {
         switch (commandType) {
-        case "AddCommand":
-            dialog.getStyleClass().add("add-label");
+        case ADD_COMMAND:
+            dialog.getStyleClass().add(ADD_LABEL);
             break;
-        case "MarkCommand":
-            dialog.getStyleClass().add("marked-label");
+        case MARK_COMMAND:
+            dialog.getStyleClass().add(MARKED_LABEL);
             break;
-        case "DeleteCommand":
-            dialog.getStyleClass().add("delete-label");
+        case DELETE_COMMAND:
+            dialog.getStyleClass().add(DELETE_LABEL);
+            break;
+        case UNKNOWN:
+            dialog.getStyleClass().add(UNKNOWN_LABEL);
             break;
         default:
             // Do nothing
