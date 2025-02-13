@@ -17,6 +17,10 @@ import peter.Peter;
  * Controller for the main GUI.
  */
 public class MainController extends AnchorPane {
+
+    private static final String WELCOME_MESSAGE = "Welcome to PETER chatbot!\n"
+            + "Type \"instruction\" to know how to use";
+
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -38,13 +42,9 @@ public class MainController extends AnchorPane {
      * is added.
      */
     public void initialize() {
-        assert scrollPane != null : "ScrollPane is not initialized!";
-        assert dialogContainer != null : "DialogContainer is not initialized!";
-        assert userInput != null : "UserInput field is not initialized!";
-        assert sendButton != null : "SendButton is not initialized!";
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
-        String greeting = peter.getGreeting();
-        dialogContainer.getChildren().add(DialogBoxController.getPeterDialogFirst(greeting, peterImage));
+        dialogContainer.getChildren().add(DialogBoxController
+                .getPeterDialogFirst(WELCOME_MESSAGE, peterImage));
     }
 
     /** Injects the Duke instance */

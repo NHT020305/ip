@@ -3,6 +3,7 @@ package peter.datetime;
 import java.time.LocalDateTime;
 
 import peter.exception.InvalidDateTimeFormatException;
+import peter.utils.ErrorMessage;
 
 /**
  * A utility class to parse and convert date-time strings into {@code LocalDateTime} objects.
@@ -33,8 +34,7 @@ public class LocalDateTimeParser {
 
         String[] parts = input.split(" ");
         if (parts.length != 2) {
-            throw new InvalidDateTimeFormatException(
-                    "OOPS!!! Invalid date & time format.");
+            throw new InvalidDateTimeFormatException(ErrorMessage.INVALID_DATE_TIME);
         }
 
         String datePart = parts[0];
@@ -42,14 +42,12 @@ public class LocalDateTimeParser {
 
         String[] dateComponents = datePart.split("/");
         if (dateComponents.length != 3) {
-            throw new InvalidDateTimeFormatException(
-                    "OOPS!!! Invalid date & time format.");
+            throw new InvalidDateTimeFormatException(ErrorMessage.INVALID_DATE_TIME);
         }
 
         if (dateComponents[0].length() != 2 || dateComponents[1].length() != 2
                 || dateComponents[2].length() != 4) {
-            throw new InvalidDateTimeFormatException(
-                    "OOPS!!! Invalid date & time format.");
+            throw new InvalidDateTimeFormatException(ErrorMessage.INVALID_DATE_TIME);
         }
 
         int day = Integer.parseInt(dateComponents[0]);
@@ -58,13 +56,11 @@ public class LocalDateTimeParser {
 
         String[] timeComponents = timePart.split(":");
         if (timeComponents.length != 2) {
-            throw new InvalidDateTimeFormatException(
-                    "OOPS!!! Invalid date & time format.");
+            throw new InvalidDateTimeFormatException(ErrorMessage.INVALID_DATE_TIME);
         }
 
         if (timeComponents[0].length() != 2 || timeComponents[1].length() != 2) {
-            throw new InvalidDateTimeFormatException(
-                    "OOPS!!! Invalid date & time format.");
+            throw new InvalidDateTimeFormatException(ErrorMessage.INVALID_DATE_TIME);
         }
 
         int hour = Integer.parseInt(timeComponents[0]);

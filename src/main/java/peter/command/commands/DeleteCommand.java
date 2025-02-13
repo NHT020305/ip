@@ -5,6 +5,7 @@ import peter.storage.TaskStorage;
 import peter.task.Task;
 import peter.task.TaskManager;
 import peter.ui.Ui;
+import peter.utils.ReplyMessage;
 
 /**
  * Represents a command to delete a task from the task list.
@@ -34,20 +35,13 @@ public class DeleteCommand extends Command {
      */
     public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         Task task = taskManager.delete(index);
-        String output = "Noted. I've removed this task:\n"
-                + "    " + task + "\n";
+        taskStorage.saveTasks(taskManager);
         if (taskManager.countTasks() == 0) {
-            output += "Now your task list is empty!!!";
+            return ReplyMessage.DELETE_ZERO_MESSAGE;
         } else {
             String isMany = taskManager.countTasks() > 1 ? "s" : "";
-            output += "Now you have "
-                    + taskManager.countTasks()
-                    + " task"
-                    + isMany
-                    + " in the list.";
+            return String.format(ReplyMessage.DELETE_MESSAGE, task, taskManager.countTasks(), isMany);
         }
-        taskStorage.saveTasks(taskManager);
-        return output;
     }
 
     /**

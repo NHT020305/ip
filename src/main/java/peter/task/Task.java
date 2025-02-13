@@ -1,5 +1,7 @@
 package peter.task;
 
+import peter.utils.TaskKeyword;
+
 /**
  * Represents a task with a description and completion status.
  */
@@ -33,7 +35,7 @@ public abstract class Task {
      * @return "X" if the task is completed, otherwise a space character.
      */
     public String getStatusIcon() {
-        return (isDone ? "X" : " ");
+        return (isDone ? TaskKeyword.MARK_DONE : " ");
     }
 
     /**
@@ -48,15 +50,6 @@ public abstract class Task {
      */
     public void markNotDone() {
         isDone = false;
-    }
-
-    /**
-     * Checks if the task is done.
-     *
-     * @return true if the task is done, false otherwise.
-     */
-    public boolean isDone() {
-        return isDone;
     }
 
     /**

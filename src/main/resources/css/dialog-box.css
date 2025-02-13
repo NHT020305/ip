@@ -1,21 +1,20 @@
 .label {
-    -fx-font: 14px "Nunito", sans-serif;
+    -fx-font: 15px "Nunito", sans-serif;
     -fx-font-weight: bold;
     -fx-background-color: linear-gradient(to bottom right, #00ffbf, #00ddff);
     -fx-border-color: #d55e00 #009e73 #cc79a7 #0072b2;
     -fx-border-width: 8px;
-    -fx-background-radius: 1em 1em 0 1em;
+    -fx-background-radius: 2em 2em 0 2em;
     -fx-border-radius: 1em 1em 0 1em;
     -fx-padding: 20px;
     -fx-border-insets: 0px 7px 0px 7px;
     -fx-background-insets: 0px 7px 0px 7px;
-    -fx-max-width: 500px;
 }
 
 .reply-label {
     -fx-text-fill: white;
     -fx-background-color: black;
-    -fx-background-radius: 1em 1em 1em 0;
+    -fx-background-radius: 2em 2em 2em 0;
     -fx-border-radius: 1em 1em 1em 0;
 }
 
@@ -32,6 +31,12 @@
 .delete-label {
     -fx-text-fill: black;
     -fx-background-color: lightpink;
+}
+
+.unknown-label {
+    -fx-text-fill: black;
+    -fx-background-color: wheat;
+    -fx-font-style: italic;
 }
 
 #displayPicture {

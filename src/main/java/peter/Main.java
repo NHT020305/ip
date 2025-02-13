@@ -23,7 +23,6 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.show();
             MainController controller = fxmlLoader.getController();
-            stage.show();
             controller.setPeter();
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -1,6 +1,7 @@
 package peter.task.type;
 
 import peter.task.Task;
+import peter.utils.TaskKeyword;
 
 /**
  * Represents a task without a specific date or time constraint.
@@ -35,6 +36,6 @@ public class ToDo extends Task {
      */
     @Override
     public String toString() {
-        return "[T]" + super.toString();
+        return TaskKeyword.TODO_TAG + super.toString();
     }
 }

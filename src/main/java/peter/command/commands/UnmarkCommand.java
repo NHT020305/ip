@@ -4,6 +4,7 @@ import peter.command.Command;
 import peter.storage.TaskStorage;
 import peter.task.TaskManager;
 import peter.ui.Ui;
+import peter.utils.ReplyMessage;
 
 /**
  * Represents a command to mark a task as not done.
@@ -34,8 +35,7 @@ public class UnmarkCommand extends Command {
     public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) {
         taskManager.markAsNotDone(index);
         taskStorage.saveTasks(taskManager);
-        return "OK, I've marked this task as not done yet:\n"
-                + "    " + taskManager.getTask(index);
+        return String.format(ReplyMessage.UNMARK_MESSAGE, taskManager.getTask(index));
     }
 
     /**
