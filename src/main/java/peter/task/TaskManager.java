@@ -83,7 +83,6 @@ public class TaskManager {
      * @param task The task to add.
      */
     public void add(Task task) throws RepeatedTaskException {
-        assert task != null : "Task should not be null";
         for (Task t : tasks) {
             if (t.equals(task)) {
                 throw new RepeatedTaskException(ErrorMessage.ALREADY_EXISTS);
