@@ -23,11 +23,11 @@ Peter is designed to help you manage your daily tasks effortlessly. With support
 
 ## Quick Start
 
-- **Ensure you have Java 17 or higher installed on your computer.**
-- **Download the latest `.jar` file from the [release page](https://github.com/NHT020305/ip/releases).**
-- **Move the `.jar` file to the desired home directory for your application.**
-- **Open the file to launch the application.** A GUI should appear within a few seconds.
-- **Enter a command in the command box and press Enter or click "Send" to execute it.**
+- Ensure you have Java 17 or higher installed on your computer.
+- Download the latest `.jar` file from the [release page](https://github.com/NHT020305/ip/releases).
+- Move the `.jar` file to the desired home directory for your application.
+- Open the file to launch the application. A GUI should appear within a few seconds.
+- Enter a command in the command box and press Enter or click "Send" to execute it.
 
 
 ## Usage Guide
