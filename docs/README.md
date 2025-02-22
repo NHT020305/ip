@@ -3,7 +3,6 @@
 Welcome to **Peter** – a simple, yet powerful, task management chatbot that helps you organize your tasks efficiently. Whether you need to add, update, or track tasks, Peter is here to streamline your workflow with an intuitive command-based interface.
 
 ![Product Screenshot](path/to/screenshot.png)  
-*Replace the above path with the actual image location.*
 
 ## Introduction
 
