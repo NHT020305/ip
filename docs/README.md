@@ -28,3 +28,55 @@ Interact with Peter using the following commands:
 - **List all tasks:**  
   ```bash
   list
+
+- **Delete task i:**  
+  ```bash
+  delete <i>
+
+- **delete all the tasks in your list::**  
+  ```bash
+  reset
+
+- **show the number of tasks in your list:**  
+  ```bash
+  count
+
+- **mark task i in your list as done:**  
+  ```bash
+  mark <i>
+
+- **mark the task i in your list as not done:**  
+  ```bash
+  unmark <i>
+
+- **list all the tasks matching a keyword:**  
+  ```bash
+  find <keyword>
+
+- **update task i description in your list:**  
+  ```bash
+  update <i> /description <details>
+
+- **update task i deadline in your list:**  
+  ```bash
+  update <i> /by <time>
+
+- **update task i start time in your list:**  
+  ```bash
+  update <i> /from <time>
+
+- **update task i end time in your list:**  
+  ```bash
+  update <i> /to <time>
+
+- **add new todo:**  
+  ```bash
+  todo <name>
+
+- **add new deadline:**  
+  ```bash
+  deadline <name> /by <time>
+
+- **add new event:**  
+  ```bash
+  event <name> /from <time> /to <time>
