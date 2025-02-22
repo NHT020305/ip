@@ -5,11 +5,6 @@ Welcome to **Peter** – a simple, yet powerful, task management chatbot that he
 ![Product Screenshot](Peter.png)  
 
 
-
-
-
-
-
 ## Introduction
 
 Peter is designed to help you manage your daily tasks effortlessly. With support for todos, deadlines, and events, Peter lets you add, update, delete, and mark tasks as done or not done—all through simple chat commands. This tool is perfect for individuals who prefer a lightweight, conversational approach to task management.
