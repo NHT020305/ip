@@ -4,9 +4,11 @@ Welcome to **Peter** – a simple, yet powerful, task management chatbot that he
 
 ![Product Screenshot](Peter.png)  
 
+
 ## Introduction
 
 Peter is designed to help you manage your daily tasks effortlessly. With support for todos, deadlines, and events, Peter lets you add, update, delete, and mark tasks as done or not done—all through simple chat commands. This tool is perfect for individuals who prefer a lightweight, conversational approach to task management.
+
 
 ## Features
 
@@ -18,14 +20,15 @@ Peter is designed to help you manage your daily tasks effortlessly. With support
 - **Count Tasks:** Check the number of tasks on your list.
 - **Flexible Date & Time Format:** All date and time inputs should follow the format `dd/MM/yyyy HH:mm`.
 
+
 ## Quick Start
 
 - **Ensure you have Java 17 or higher installed on your computer.**
 - **Download the latest `.jar` file from the [release page](https://github.com/NHT020305/ip/releases).**
 - **Move the `.jar` file to the desired home directory for your application.**
 - **Open the file to launch the application.** A GUI should appear within a few seconds.
-- **Enter a command in the command box and press Enter or click "Send" to execute it.**  
-  Refer to the Command sections below for detailed information on each command.
+- **Enter a command in the command box and press Enter or click "Send" to execute it.**
+
 
 ## Usage Guide
 
