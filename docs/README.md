@@ -28,7 +28,7 @@ Interact with Peter using the following commands:
   ```bash
   list
 
-- **Delete task i:**  
+- **delete task i:**  
   ```bash
   delete <i>
 
