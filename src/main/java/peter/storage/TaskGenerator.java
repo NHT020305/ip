@@ -40,7 +40,8 @@ public class TaskGenerator {
             String[] deadlineParts = input.substring(
                     TaskKeyword.DEADLINE.length() + 1).trim().split(DateTime.BY_COMMAND);
             if (deadlineParts.length != 2) {
-                throw new InvalidTaskFormatException(ErrorMessage.INVALID_TASK_FORMAT);
+                throw new InvalidTaskFormatException(String.format(
+                        ErrorMessage.INVALID_TASK_FORMAT, TaskKeyword.DEADLINE));
             }
             String description = deadlineParts[0].trim();
             if (description.isEmpty()) {
@@ -55,7 +56,8 @@ public class TaskGenerator {
             String[] eventParts = input.substring(
                     TaskKeyword.EVENT.length() + 1).split(DateTime.FROM_COMMAND);
             if (eventParts.length != 2) {
-                throw new InvalidTaskFormatException(ErrorMessage.INVALID_TASK_FORMAT);
+                throw new InvalidTaskFormatException(String.format(
+                        ErrorMessage.INVALID_TASK_FORMAT, TaskKeyword.EVENT));
             }
             String description = eventParts[0].trim();
             if (description.isEmpty()) {

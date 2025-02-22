@@ -61,6 +61,10 @@ public abstract class Task {
      */
     public abstract boolean equals(Task task);
 
+    public boolean isDone() {
+        return isDone;
+    }
+
     public abstract void updateDescription(String description);
     public abstract void updateTimeBy(LocalDateTime time);
     public abstract void updateTimeFrom(LocalDateTime time);

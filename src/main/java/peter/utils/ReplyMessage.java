@@ -17,16 +17,16 @@ public class ReplyMessage {
                 + show the number of tasks in your list: count
                 + mark the ith task in your list as done: mark <i>
                 + mark the ith task in your list as not done: unmark <i>
-                + list all the tasks matching keyword: find <keyword>
+                + list all the tasks matching a keyword: find <keyword>
                 + update the ith task description in your list: update <i> /description <details>
                 + update the ith task deadline in your list: update <i> /by <details>
                 + update the ith task start time in your list: update <i> /from <details>
                 + update the ith task end time in your list: update <i> /to <details>
-                + exit Peter chatbot.
-                + add new todo: "todo <name>".
-                + add new deadline: "deadline <name> /by <time>".
-                + add new event: "event <name> /from <time> /to <time>".
-                + time format: "dd/MM/yyyy HH:mm".""";
+                + exit Peter chatbot: bye
+                + add new todo: todo <name>"
+                + add new deadline: deadline <name> /by <time>
+                + add new event: event <name> /from <time> /to <time>
+                + date & time format: "dd/MM/yyyy HH:mm""";
 
     public static final String BYE_MESSAGE = "Bye. PETER chatbot hopes to see you again soon!";
 
