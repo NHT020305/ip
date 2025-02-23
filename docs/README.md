@@ -36,7 +36,7 @@ Interact with Peter using the following commands:
 
 ### Basic Commands
 
-- **List all tasks:**  `list`
+- **list all tasks:**  `list`
 - **delete task i:**  `delete <i>`
 - **delete all the tasks in your list::**  `reset`
 - **show the number of tasks in your list:**  `count`
