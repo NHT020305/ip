@@ -37,17 +37,147 @@ Interact with Peter using the following commands:
 ### Basic Commands
 
 - **list all tasks:**  `list`
+    
+    Example: `list`
+    
+    Output: 
+    
+        Here are the tasks in your list:
+            <Task 1> 
+            <Task 2>
+            ....
+
 - **delete task i:**  `delete <i>`
+    
+    Example: `delete 1`
+    
+    Output:
+
+      Noted. I've removed this task:
+        <Task 1>
+      Now you have 2 tasks in the list.
+
+
 - **delete all the tasks in your list::**  `reset`
+    
+    Example: `reset`
+    
+    Output:
+    
+        Got it. Now your task list is empty.
+        Let's create a new task!!!
+
+
 - **show the number of tasks in your list:**  `count`
+  
+    Example: `count`
+
+    Output:
+
+        You have 3 task%s in the list.
+
+
 - **mark task i in your list as done:**  `mark <i>`
+    
+    Example: `mark 1`
+
+    Output:
+
+        Nice! I've marked this task as done:
+            <Task 1>
+
+
 - **mark the task i in your list as not done:**  `unmark <i>`
+
+    Example: `mark 1`
+
+    Output:
+
+        Nice! I've marked this task as done:
+            <Task 1>
+
+
 - **list all the tasks matching a keyword:**  `find <keyword>`
+
+    Example: `find play`
+
+    Output:
+
+        Here are the tasks in your list matching "play":
+            <Task 1>
+            <Task 2>
+        Number of results: 2
+
+
 - **update task i description in your list:**  `update <i> /description <details>`
+
+    Example: `update 2 /desciption "play"`
+
+    Output:
+
+        Nice! I've updated this task as following:
+            <Updated task 2>;
+
 - **update task i deadline in your list:**  `update <i> /by <time>`
+
+    Example: `update 3 /by 18/03/2025 23:59`
+
+    Output:
+
+        Nice! I've updated this task as following:
+            <Updated deadline 3>;
+
+
 - **update task i start time in your list:**  `update <i> /from <time>`
+
+    Example: `update 4 /from 18/03/2025 11:00`
+
+    Output:
+
+        Nice! I've updated this task as following:
+            <Updated event 4>;
+
+
 - **update task i end time in your list:**  `update <i> /to <time>`
-- **add new todo:**  `todo <name>`
+
+    Example: `update 4 /to 18/03/2025 11:00`
+
+    Output:
+
+        Nice! I've updated this task as following:
+            <Updated event 4>;
+
+  - **add new todo:**  `todo <name>`
+
+    Example: `todo play badminton`
+
+    Output:
+
+        Got it. I've added this task:
+            <todo>
+        Now you have %d task%s in the list."""
+
+
 - **add new deadline:**  `deadline <name> /by <time>`
+
+    Example: `deadline do homework 20/03/2025 23:59`
+
+    Output:
+
+        Got it. I've added this task:
+            <deadline>
+        Now you have %d task%s in the list."""
+
+
 - **add new event:**  `event <name> /from <time> /to <time>`
+
+    Example: `event meeting /from 20/03/2025 15:00 /to 20/03/2025 16:00`
+
+    Output:
+
+        Got it. I've added this task:
+            <event>
+        Now you have %d task%s in the list."""
+
+
 - **exit Peter chatbot:**  `bye`
