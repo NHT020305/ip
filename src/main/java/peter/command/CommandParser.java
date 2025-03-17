@@ -16,6 +16,7 @@ import peter.exception.InvalidDateTimeFormatException;
 import peter.exception.InvalidTaskFormatException;
 import peter.exception.MeaninglessCommandException;
 import peter.storage.TaskGenerator;
+import peter.task.Task;
 import peter.utils.CommandType;
 import peter.utils.ErrorMessage;
 import peter.utils.TaskKeyword;
@@ -47,15 +48,52 @@ public class CommandParser {
         } else if (command.equals(CommandType.COUNT_COMMAND)) {
             return new CountCommand();
         } else if (command.startsWith(CommandType.MARK_COMMAND)) {
-            return new MarkCommand(Integer.parseInt(
-                    command.split(" ")[1]) - 1);
+            return handleMarkCommand(command);
         } else if (command.startsWith(CommandType.UNMARK_COMMAND)) {
-            return new UnmarkCommand(Integer.parseInt(
-                    command.split(" ")[1]) - 1);
+            return handleUnmarkCommand(command);
         } else if (command.startsWith(CommandType.DELETE_COMMAND)) {
-            return new DeleteCommand(Integer.parseInt(
-                    command.split(" ")[1]) - 1);
+            return handleDeleteCommand(command);
         } else if (command.startsWith(CommandType.UPDATE_COMMAND)) {
+            return handleUpdateCommand(command);
+        } else if (command.startsWith(TaskKeyword.TODO) || command.startsWith(TaskKeyword.DEADLINE)
+                || command.startsWith(TaskKeyword.EVENT)) {
+            return handleTaskCommand(command);
+        } else if (command.startsWith(CommandType.FIND_COMMAND)) {
+            return handleFindCommand(command);
+        }
+        throw new MeaninglessCommandException(ErrorMessage.MEANINGLESS_COMMAND);
+    }
+
+    private Command handleMarkCommand(String command) {
+        try {
+            int index = Integer.parseInt(command.split(" ")[1]) - 1;
+            return new MarkCommand(index);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Invalid integer");
+        }
+    }
+
+    private Command handleUnmarkCommand(String command) {
+        try {
+            int index = Integer.parseInt(command.split(" ")[1]) - 1;
+            return new UnmarkCommand(index);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Invalid integer");
+        }
+
+    }
+
+    private Command handleDeleteCommand(String command) {
+        try {
+            int index = Integer.parseInt(command.split(" ")[1]) - 1;
+            return new DeleteCommand(index);
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Invalid integer");
+        }
+    }
+
+    private Command handleUpdateCommand(String command) {
+        try {
             String[] parts = command.split(" ");
             int index = Integer.parseInt(parts[1]) - 1;
             String typeOfUpdate = parts[2];
@@ -64,12 +102,18 @@ public class CommandParser {
                 updateDetails += " " + parts[4];
             }
             return new UpdateCommand(index, typeOfUpdate, updateDetails);
-        } else if (command.startsWith(TaskKeyword.TODO) || command.startsWith(TaskKeyword.DEADLINE)
-                || command.startsWith(TaskKeyword.EVENT)) {
-            return new AddCommand(new TaskGenerator().getTask(command));
-        } else if (command.startsWith(CommandType.FIND_COMMAND)) {
-            return new FindCommand(command.substring(5));
+        } catch (NumberFormatException e) {
+            throw new NumberFormatException("Invalid integer");
         }
-        throw new MeaninglessCommandException(ErrorMessage.MEANINGLESS_COMMAND);
     }
+
+    private Command handleTaskCommand(String command) throws EmptyTaskException, InvalidTaskFormatException, InvalidDateTimeFormatException {
+        Task task = new TaskGenerator().getTask(command);
+        return new AddCommand(task);
+    }
+
+    private Command handleFindCommand(String command) {
+        return new FindCommand(command.substring(5));
+    }
+
 }

@@ -31,42 +31,47 @@ public class LocalDateTimeParser {
      * @throws NumberFormatException If date or time components cannot be parsed as integers.
      */
     public LocalDateTime convertToTime() throws InvalidDateTimeFormatException {
+        String[] parts = splitInput(input);
+        int[] dateComponents = parseDatePart(parts[0]);
+        int[] timeComponents = parseTimePart(parts[1]);
+        return LocalDateTime.of(dateComponents[2], dateComponents[1], dateComponents[0],
+                timeComponents[0], timeComponents[1]);
+    }
 
+    private String[] splitInput(String input) throws InvalidDateTimeFormatException {
         String[] parts = input.split(" ");
         if (parts.length != 2) {
             throw new InvalidDateTimeFormatException(ErrorMessage.INVALID_DATE_TIME);
         }
+        return parts;
+    }
 
-        String datePart = parts[0];
-        String timePart = parts[1];
-
+    private int[] parseDatePart(String datePart) throws InvalidDateTimeFormatException {
         String[] dateComponents = datePart.split("/");
         if (dateComponents.length != 3) {
             throw new InvalidDateTimeFormatException(ErrorMessage.INVALID_DATE_TIME);
         }
-
-        if (dateComponents[0].length() != 2 || dateComponents[1].length() != 2
-                || dateComponents[2].length() != 4) {
+        if (dateComponents[0].length() != 2 || dateComponents[1].length() != 2 || dateComponents[2].length() != 4) {
             throw new InvalidDateTimeFormatException(ErrorMessage.INVALID_DATE_TIME);
         }
-
         int day = Integer.parseInt(dateComponents[0]);
         int month = Integer.parseInt(dateComponents[1]);
         int year = Integer.parseInt(dateComponents[2]);
+        return new int[] { day, month, year };
+    }
 
+    private int[] parseTimePart(String timePart) throws InvalidDateTimeFormatException {
         String[] timeComponents = timePart.split(":");
         if (timeComponents.length != 2) {
             throw new InvalidDateTimeFormatException(ErrorMessage.INVALID_DATE_TIME);
         }
-
         if (timeComponents[0].length() != 2 || timeComponents[1].length() != 2) {
             throw new InvalidDateTimeFormatException(ErrorMessage.INVALID_DATE_TIME);
         }
-
         int hour = Integer.parseInt(timeComponents[0]);
         int minute = Integer.parseInt(timeComponents[1]);
-
-        return LocalDateTime.of(year, month, day, hour, minute);
+        return new int[] { hour, minute };
     }
+
 
 }

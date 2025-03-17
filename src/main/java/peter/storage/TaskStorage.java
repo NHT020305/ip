@@ -70,34 +70,48 @@ public class TaskStorage {
             EmptyTaskException, InvalidTaskFormatException {
         String output;
         if (task.startsWith(TaskKeyword.TODO_TAG)) {
-            output = String.format("%s %s", TaskKeyword.TODO, task.substring(
-                    TaskKeyword.NUMBER_OF_CHARACTERS_BEFORE_DESCRIPTION));
+            output = convertTodoTask(task);
         } else if (task.startsWith(TaskKeyword.DEADLINE_TAG)) {
-            String[] deadlineParts = task.substring(
-                    TaskKeyword.NUMBER_OF_CHARACTERS_BEFORE_DESCRIPTION).split(DateTime.BY_LOAD_TASKS);
-            String deadlineDescription = deadlineParts[0].trim();
-            String date = LocalDateTime.parse(deadlineParts[1].split("\\)")[0].trim()).format(
-                    DateTimeFormatter.ofPattern(DateTime.DATE_FORMAT));
-            output = String.format("%s %s %s %s", TaskKeyword.DEADLINE, deadlineDescription,
-                    DateTime.BY_COMMAND, date);
+            output = convertDeadlineTask(task);
         } else {
-            String[] eventParts = task.substring(
-                    TaskKeyword.NUMBER_OF_CHARACTERS_BEFORE_DESCRIPTION).split(DateTime.FROM_LOAD_TASKS);
-            String[] dateParts = eventParts[1].split(DateTime.TO_LOAD_TASKS);
-            String eventDescription = eventParts[0].trim();
-            String fromPart = LocalDateTime.parse(dateParts[0].trim()).format(
-                    DateTimeFormatter.ofPattern(DateTime.DATE_FORMAT));
-            String toPart = LocalDateTime.parse(dateParts[1].split("\\)")[0].trim()).format(
-                    DateTimeFormatter.ofPattern(DateTime.DATE_FORMAT));
-            output = String.format("%s %s %s %s %s %s", TaskKeyword.EVENT, eventDescription,
-                    DateTime.FROM_COMMAND, fromPart, DateTime.TO_COMMAND, toPart);
+            output = convertEventTask(task);
         }
+
         Task newTask = new TaskGenerator().getTask(output);
         if (task.contains(TaskKeyword.MARK_DONE)) {
             newTask.markDone();
         }
         return newTask;
     }
+
+    private String convertTodoTask(String task) {
+        return String.format("%s %s", TaskKeyword.TODO,
+                task.substring(TaskKeyword.NUMBER_OF_CHARACTERS_BEFORE_DESCRIPTION));
+    }
+
+    private String convertDeadlineTask(String task) throws InvalidDateTimeFormatException {
+        String[] deadlineParts = task.substring(TaskKeyword.NUMBER_OF_CHARACTERS_BEFORE_DESCRIPTION)
+                .split(DateTime.BY_LOAD_TASKS);
+        String deadlineDescription = deadlineParts[0].trim();
+        String date = LocalDateTime.parse(deadlineParts[1].split("\\)")[0].trim())
+                .format(DateTimeFormatter.ofPattern(DateTime.DATE_FORMAT));
+        return String.format("%s %s %s %s", TaskKeyword.DEADLINE, deadlineDescription,
+                DateTime.BY_COMMAND, date);
+    }
+
+    private String convertEventTask(String task) throws InvalidDateTimeFormatException {
+        String[] eventParts = task.substring(TaskKeyword.NUMBER_OF_CHARACTERS_BEFORE_DESCRIPTION)
+                .split(DateTime.FROM_LOAD_TASKS);
+        String[] dateParts = eventParts[1].split(DateTime.TO_LOAD_TASKS);
+        String eventDescription = eventParts[0].trim();
+        String fromPart = LocalDateTime.parse(dateParts[0].trim())
+                .format(DateTimeFormatter.ofPattern(DateTime.DATE_FORMAT));
+        String toPart = LocalDateTime.parse(dateParts[1].split("\\)")[0].trim())
+                .format(DateTimeFormatter.ofPattern(DateTime.DATE_FORMAT));
+        return String.format("%s %s %s %s %s %s", TaskKeyword.EVENT, eventDescription,
+                DateTime.FROM_COMMAND, fromPart, DateTime.TO_COMMAND, toPart);
+    }
+
 
     /**
      * Loads tasks from the data file.

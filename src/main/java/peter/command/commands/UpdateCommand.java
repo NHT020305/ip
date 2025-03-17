@@ -42,34 +42,66 @@ public class UpdateCommand extends Command {
      * @param taskManager The manager handling tasks.
      * @param taskStorage The storage to save tasks.
      */
-    public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage) throws
-            RepeatedTaskException, InvalidDateTimeFormatException, MeaninglessCommandException, InvalidUpdateException {
+    public String execute(Ui ui, TaskManager taskManager, TaskStorage taskStorage)
+            throws RepeatedTaskException, InvalidDateTimeFormatException,
+            MeaninglessCommandException, InvalidUpdateException {
         Task task = taskManager.getTask(index);
+        applyUpdate(task);
+        taskStorage.saveTasks(taskManager);
+        return String.format(ReplyMessage.UPDATE_MESSAGE, task);
+    }
+
+    private void applyUpdate(Task task)
+            throws InvalidDateTimeFormatException, MeaninglessCommandException, InvalidUpdateException {
         switch (typeOfUpdate) {
-        case "/description" -> task.updateDescription(updatedDetails);
-        case "/by" -> {
-            if (task instanceof Deadline) {
-                task.updateTimeBy(new LocalDateTimeParser(updatedDetails).convertToTime());
-            }
+            case "/description":
+                updateDescription(task);
+                break;
+            case "/by":
+                updateBy(task);
+                break;
+            case "/from":
+                updateFrom(task);
+                break;
+            case "/to":
+                updateTo(task);
+                break;
+            default:
+                throw new MeaninglessCommandException(ErrorMessage.MEANINGLESS_COMMAND);
+        }
+    }
+
+    private void updateDescription(Task task) {
+        task.updateDescription(updatedDetails);
+    }
+
+    private void updateBy(Task task)
+            throws InvalidDateTimeFormatException, InvalidUpdateException {
+        if (task instanceof Deadline) {
+            task.updateTimeBy(new LocalDateTimeParser(updatedDetails).convertToTime());
+        } else {
             throw new InvalidUpdateException(String.format(ErrorMessage.NOT_DEADLINE, index + 1));
         }
-        case "/from" -> {
-            if (task instanceof Event) {
-                task.updateTimeFrom(new LocalDateTimeParser(updatedDetails).convertToTime());
-            }
-            throw new InvalidUpdateException(String.format(ErrorMessage.NOT_EVENT, index + 1));
-        }
-        case "/to" -> {
-            if (task instanceof Event) {
-                task.updateTimeTo(new LocalDateTimeParser(updatedDetails).convertToTime());
-            }
-            throw new InvalidUpdateException(String.format(ErrorMessage.NOT_EVENT, index + 1));
-        }
-        default -> throw new MeaninglessCommandException(ErrorMessage.MEANINGLESS_COMMAND);
-        }
-        taskStorage.saveTasks(taskManager);
-        return String.format(ReplyMessage.UPDATE_MESSAGE, taskManager.getTask(index + 1));
     }
+
+    private void updateFrom(Task task)
+            throws InvalidDateTimeFormatException, InvalidUpdateException {
+        if (task instanceof Event) {
+            task.updateTimeFrom(new LocalDateTimeParser(updatedDetails).convertToTime());
+        } else {
+            throw new InvalidUpdateException(String.format(ErrorMessage.NOT_EVENT, index + 1));
+        }
+    }
+
+    private void updateTo(Task task)
+            throws InvalidDateTimeFormatException, InvalidUpdateException {
+        if (task instanceof Event) {
+            task.updateTimeTo(new LocalDateTimeParser(updatedDetails).convertToTime());
+        } else {
+            throw new InvalidUpdateException(String.format(ErrorMessage.NOT_EVENT, index + 1));
+        }
+    }
+
 
     @Override
     public boolean isTerminal() {
