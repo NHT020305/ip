@@ -155,7 +155,7 @@ Interact with Peter using the following commands:
 
         Got it. I've added this task:
             <todo>
-        Now you have %d task%s in the list."""
+        Now you have 3 tasks in the list."""
 
 
 - **add new deadline:**  `deadline <name> /by <time>`
@@ -166,7 +166,7 @@ Interact with Peter using the following commands:
 
         Got it. I've added this task:
             <deadline>
-        Now you have %d task%s in the list."""
+        Now you have 3 tasks in the list."""
 
 
 - **add new event:**  `event <name> /from <time> /to <time>`
@@ -177,7 +177,7 @@ Interact with Peter using the following commands:
 
         Got it. I've added this task:
             <event>
-        Now you have %d task%s in the list."""
+        Now you have 3 tasks in the list."""
 
 
 - **exit Peter chatbot:**  `bye`
