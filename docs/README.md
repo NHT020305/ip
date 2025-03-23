@@ -116,7 +116,7 @@ Interact with Peter using the following commands:
     Output:
 
         Nice! I've updated this task as following:
-            <Updated task 2>;
+            <Updated task 2>
 
 - **update task i deadline in your list:**  `update <i> /by <time>`
 
@@ -125,7 +125,7 @@ Interact with Peter using the following commands:
     Output:
 
         Nice! I've updated this task as following:
-            <Updated deadline 3>;
+            <Updated deadline 3>
 
 
 - **update task i start time in your list:**  `update <i> /from <time>`
@@ -135,7 +135,7 @@ Interact with Peter using the following commands:
     Output:
 
         Nice! I've updated this task as following:
-            <Updated event 4>;
+            <Updated event 4>
 
 
 - **update task i end time in your list:**  `update <i> /to <time>`
@@ -155,7 +155,7 @@ Interact with Peter using the following commands:
 
         Got it. I've added this task:
             <todo>
-        Now you have 3 tasks in the list."""
+        Now you have 3 tasks in the list.
 
 
 - **add new deadline:**  `deadline <name> /by <time>`
@@ -166,7 +166,7 @@ Interact with Peter using the following commands:
 
         Got it. I've added this task:
             <deadline>
-        Now you have 3 tasks in the list."""
+        Now you have 3 tasks in the list.
 
 
 - **add new event:**  `event <name> /from <time> /to <time>`
@@ -177,7 +177,7 @@ Interact with Peter using the following commands:
 
         Got it. I've added this task:
             <event>
-        Now you have 3 tasks in the list."""
+        Now you have 3 tasks in the list.
 
 
 - **exit Peter chatbot:**  `bye`
