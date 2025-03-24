@@ -53,9 +53,9 @@ Interact with Peter using the following commands:
     
     Output:
 
-      Noted. I've removed this task:
-        <Task 1>
-      Now you have 2 tasks in the list.
+        Noted. I've removed this task:
+          <Task 1>
+        Now you have 2 tasks in the list.
 
 
 - **delete all the tasks in your list::**  `reset`
@@ -154,7 +154,7 @@ Interact with Peter using the following commands:
     Output:
 
         Got it. I've added this task:
-            <todo>
+            [T][] play badminton
         Now you have 3 tasks in the list.
 
 
@@ -165,7 +165,7 @@ Interact with Peter using the following commands:
     Output:
 
         Got it. I've added this task:
-            <deadline>
+            [D][] do home work (by: 2023-03-20T23:59)
         Now you have 3 tasks in the list.
 
 
@@ -176,7 +176,7 @@ Interact with Peter using the following commands:
     Output:
 
         Got it. I've added this task:
-            <event>
+            [E][] meeting (from: 2025-03-20T15:00 to: 2025-03-20T16:00
         Now you have 3 tasks in the list.
 
 
