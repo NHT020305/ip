@@ -147,7 +147,7 @@ Interact with Peter using the following commands:
         Nice! I've updated this task as following:
             <Updated event 4>;
 
-  - **add new todo:**  `todo <name>`
+- **add new todo:**  `todo <name>`
 
     Example: `todo play badminton`
 
