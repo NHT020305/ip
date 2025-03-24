@@ -176,7 +176,7 @@ Interact with Peter using the following commands:
     Output:
 
         Got it. I've added this task:
-            [E][] meeting (from: 2025-03-20T15:00 to: 2025-03-20T16:00
+            [E][] meeting (from: 2025-03-20T15:00 to: 2025-03-20T16:00)
         Now you have 3 tasks in the list.
 
 
