@@ -54,7 +54,7 @@ Interact with Peter using the following commands:
     Output:
 
         Noted. I've removed this task:
-          <Task 1>
+            <Task 1>
         Now you have 2 tasks in the list.
 
 
